@@ -8,6 +8,6 @@
     home-manager.users.${user} = {
         programs.waybar = {
             enable = true;
-        }
-    }
+        };
+    };
 }

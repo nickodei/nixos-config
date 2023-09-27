@@ -1,9 +1,6 @@
-{ pkgs, lib, ... }:
+{ config, lib, pkgs, user, ... }:
 
 {
-  
-  home.packages = with pkgs; [mako];
-
   wayland.windowManager.hyprland = {
     enable = true;
     systemdIntegration = true;
@@ -175,10 +172,4 @@
       bindm = $mainMod, mouse:273, resizewindow
     '';
   };
-
- # home.sessionVariables = {
- #   MOZ_ENABLE_WAYLAND = "1";    
- #   WLR_NO_HARDWARE_CURSORS = "1"; # If your cursor becomes invisible   
- #   NIXOS_OZONE_WL = "1"; # Hint electron apps to use wayland
- # };
 }

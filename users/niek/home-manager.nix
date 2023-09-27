@@ -4,7 +4,6 @@
 { 
   imports = [
     inputs.hyprland.homeManagerModules.default
-    ../../modules/hyprland/home.nix
   ];
 
   # Home - Default Settings
