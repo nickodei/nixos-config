@@ -9,21 +9,18 @@ name: {
 
 let
   # The config files for this system.
-  machineConfig = ../hosts/${name};
-  userOSConfig = ../users/${user}/nixos.nix;
-  userHMConfig = ../users/${user}/home-manager.nix;
-
 in nixpkgs.lib.nixosSystem rec {
   inherit system;
 
+  specialArgs = {inherit inputs user;};
   modules = [
-    machineConfig
-    userOSConfig
+    ../hosts/${name}
+    ../users/${user}/nixos.nix
     inputs.home-manager.nixosModules.home-manager {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
-      home-manager.extraSpecialArgs = {inherit inputs;};
-      home-manager.users.${user} = import userHMConfig;
+      home-manager.extraSpecialArgs = {inherit inputs user;};
+      home-manager.users.${user} = import ../users/${user}/home-manager.nix;
     }
   ];
 }
