@@ -5,6 +5,7 @@
     ../../modules/waybar
     ../../modules/hyprland
     ../../modules/hyprpaper
+    ../../modules/zsh
   ];
 
   # Add ~/.local/bin to PATH
