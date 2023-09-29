@@ -91,7 +91,7 @@
             }];
             style = ''
                 * {
-                    font-family: "SauceCodePro Nerd Font";
+                    font-family: "SauceCodePro NFM";
                     font-weight: 600;
                     font-size: 16px;
                 }
