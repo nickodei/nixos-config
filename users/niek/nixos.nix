@@ -36,8 +36,8 @@
     LIBSEAT_BACKEND = "logind";
   };
 
-  fonts.fonts = with pkgs; [
-    nerdfonts.override { withFont = "Inconsolata"; }
+  fonts.packages = with pkgs; [
+    (nerdfonts.override { fonts = [ "Inconsolata" ]; })
   ];
 
   security.polkit.enable = true;
