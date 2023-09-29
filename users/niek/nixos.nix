@@ -37,7 +37,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Source Code Pro" ]; })
+    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 
   security.polkit.enable = true;
