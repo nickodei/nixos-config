@@ -17,6 +17,8 @@
                     "hyprland/workspaces"
                 ];
                 modules-right = [
+                    "battery"
+                    "disk"
                     "cpu"
                     "memory"
                     "clock"
@@ -26,8 +28,7 @@
                     "bluetooth"
                     "pulseaudio"
                     "pulseaudio#mic"
-                    "backlight"
-                    "battery"
+                    "backlight"                   
                 ];
                 bluetooth = {
                     format = "󰂲";
@@ -99,6 +100,11 @@
                     interval = 30;
                     format = "{used:0.1f}G ";
                     max-length = 10;
+                };
+                disk = {
+                    interval = 30;
+                    format = "{percentage_used}% 󰋊";
+                    path = "/";
                 };
             }];
             style = ''
