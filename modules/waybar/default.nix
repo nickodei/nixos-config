@@ -29,18 +29,18 @@
                     "custom/bat"
                 ];
                 "custom/bat" = {
-                    #exec = "~/.config/waybar/bat.sh";
+                    exec = "~/.config/waybar/bat.sh";
                     interval = 5;
                 };
                 "custom/microphone" = {
-                    #exec = "~/.config/waybar/microphone.sh";
+                    exec = "~/.config/waybar/microphone.sh";
                     on-click = "pavucontrol";
                     format = "{}";
                     interval = 2;
                 };
                 bluetooth = {
                     format = "󰂲";
-                    format-connected = "";
+                    format-connected = "󰂯";
                     tooltip-format = "{controller_alias}\t{controller_address}\n{num_connections} connected";
                     tooltip-format-connected = "{controller_alias}\t{controller_address}\n{num_connections} connected\n\n{device_enumerate}";
                     tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
@@ -148,6 +148,43 @@
                 #network {
                     margin-left: 30px;
                 }
+            '';
+        };
+        home.file = {
+            ".config/waybar/microphone.sh".text = ''
+                if [[ ! $(wpctl status | rg "capture") ]]; then
+                    echo ""
+                    exit 0
+                fi
+
+                text=""
+                [[ $(wpctl get-volume @DEFAULT_SOURCE@ | rg MUTED) ]] && text=""
+
+                echo -e "$text\n$(wpctl get-volume @DEFAULT_SOURCE@)"
+            '';
+            ".config/waybar/bat.sh".text = ''
+                BAT1=$( < /sys/class/power_supply/BAT0/capacity )
+                BAT2=$( < /sys/class/power_supply/BAT1/capacity )
+                LEVEL=$(( ($BAT1 + $BAT2) / 2 ))
+
+                STATUS1=$( < /sys/class/power_supply/BAT0/status )
+                STATUS2=$( < /sys/class/power_supply/BAT1/status )
+                [[ $STATUS1 == "Charging" || $STATUS2 == "Charging" ]] && CHARGING="  󱐋"
+
+                if   [[ $LEVEL -lt 20 ]]; then
+                    ICON=" "
+                    CLASS="critical"
+                elif [[ $LEVEL -lt 40 ]]; then
+                    ICON=""
+                elif [[ $LEVEL -lt 60 ]]; then
+                    ICON=""
+                elif [[ $LEVEL -lt 80 ]]; then
+                    ICON=""
+                else
+                    ICON=""
+                fi
+
+                echo -e "$LEVEL% $ICON$CHARGING\n\n$CLASS"
             '';
         };
     };
