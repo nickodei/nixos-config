@@ -37,7 +37,7 @@
   };
 
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Inconsolata" ]; })
+    (nerdfonts.override { fonts = [ "InconsolataGo" ]; })
   ];
 
   security.polkit.enable = true;
