@@ -13,13 +13,13 @@
                 position = "top";
                 spacing = 1;
                 height = 32;
-                modules-left = [
-                    "sway/workspaces"
-                ];
                 modules-center = [
-                    "clock"
+                    "hyprland/workspaces"
                 ];
                 modules-right = [
+                    "clock"
+                ];
+                modules-left = [
                     "network"
                     "bluetooth"
                     "pulseaudio"
@@ -96,9 +96,21 @@
                     font-size: 16px;
                 }
 
-                /* window {
-                    background: #282828;
-                } */
+                window#waybar {
+                    background: transparent;
+                }
+
+
+		.modules-left, 
+		.modules-center, 
+		.modules-right {
+		    background: #282828;
+		    margin: 8px;
+		    border-radius: 8px;
+		    border: solid 2px #928374;
+		    padding-left: 4px;
+		    padding-right: 4px;
+		}
 
                 label {
                     padding: 0 8px;
