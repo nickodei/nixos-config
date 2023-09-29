@@ -32,7 +32,7 @@
 
   programs.kitty = {
     enable = true;
-    font.name = "SourceCodePro Nerd Font";
+    font.name = "SauceCodePro NFM";
   };
 
   programs.vscode = {

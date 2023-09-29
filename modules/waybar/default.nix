@@ -91,7 +91,7 @@
             }];
             style = ''
                 * {
-                    font-family: "Inconsolata Nerd Font";
+                    font-family: "SauceCodePro Nerd Font";
                     font-weight: 600;
                     font-size: 16px;
                 }
