@@ -2,7 +2,7 @@
 
 {
     home-manager.users.${user} = {
-        programs.hyprland = {
+        wayland.windowManager.hyprland = {
             enable = true;
             systemdIntegration = true;
             enableNvidiaPatches = true;
