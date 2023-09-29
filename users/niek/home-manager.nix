@@ -32,6 +32,7 @@
 
   programs.kitty = {
     enable = true;
+    font.name = "SourceCodePro Nerd Font"
   };
 
   programs.vscode = {
