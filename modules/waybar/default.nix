@@ -151,41 +151,47 @@
             '';
         };
         home.file = {
-            ".config/waybar/microphone.sh".text = ''
-                if [[ ! $(wpctl status | rg "capture") ]]; then
-                    echo ""
-                    exit 0
-                fi
+            ".config/waybar/microphone.sh" =  {
+                text = ''
+                    if [[ ! $(wpctl status | rg "capture") ]]; then
+                        echo ""
+                        exit 0
+                    fi
 
-                text=""
-                [[ $(wpctl get-volume @DEFAULT_SOURCE@ | rg MUTED) ]] && text=""
+                    text=""
+                    [[ $(wpctl get-volume @DEFAULT_SOURCE@ | rg MUTED) ]] && text=""
 
-                echo -e "$text\n$(wpctl get-volume @DEFAULT_SOURCE@)"
-            '';
-            ".config/waybar/bat.sh".text = ''
-                BAT1=$( < /sys/class/power_supply/BAT0/capacity )
-                BAT2=$( < /sys/class/power_supply/BAT1/capacity )
-                LEVEL=$(( ($BAT1 + $BAT2) / 2 ))
+                    echo -e "$text\n$(wpctl get-volume @DEFAULT_SOURCE@)"
+                '';
+                executable = true;
+            };
+            ".config/waybar/bat.sh" = {
+                text = ''
+                    BAT1=$( < /sys/class/power_supply/BAT0/capacity )
+                    BAT2=$( < /sys/class/power_supply/BAT1/capacity )
+                    LEVEL=$(( ($BAT1 + $BAT2) / 2 ))
 
-                STATUS1=$( < /sys/class/power_supply/BAT0/status )
-                STATUS2=$( < /sys/class/power_supply/BAT1/status )
-                [[ $STATUS1 == "Charging" || $STATUS2 == "Charging" ]] && CHARGING="  󱐋"
+                    STATUS1=$( < /sys/class/power_supply/BAT0/status )
+                    STATUS2=$( < /sys/class/power_supply/BAT1/status )
+                    [[ $STATUS1 == "Charging" || $STATUS2 == "Charging" ]] && CHARGING="  󱐋"
 
-                if   [[ $LEVEL -lt 20 ]]; then
-                    ICON=" "
-                    CLASS="critical"
-                elif [[ $LEVEL -lt 40 ]]; then
-                    ICON=""
-                elif [[ $LEVEL -lt 60 ]]; then
-                    ICON=""
-                elif [[ $LEVEL -lt 80 ]]; then
-                    ICON=""
-                else
-                    ICON=""
-                fi
+                    if   [[ $LEVEL -lt 20 ]]; then
+                        ICON=" "
+                        CLASS="critical"
+                    elif [[ $LEVEL -lt 40 ]]; then
+                        ICON=""
+                    elif [[ $LEVEL -lt 60 ]]; then
+                        ICON=""
+                    elif [[ $LEVEL -lt 80 ]]; then
+                        ICON=""
+                    else
+                        ICON=""
+                    fi
 
-                echo -e "$LEVEL% $ICON$CHARGING\n\n$CLASS"
-            '';
+                    echo -e "$LEVEL% $ICON$CHARGING\n\n$CLASS"
+                '';
+                executable = true;
+            };
         };
     };
 }
