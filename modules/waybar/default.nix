@@ -25,11 +25,11 @@
                 ];
                 modules-left = [
                     "custom/nixos"
+                    "backlight"                   
                     "network"
                     "bluetooth"
                     "pulseaudio"
                     "pulseaudio#mic"
-                    "backlight"                   
                 ];
                 bluetooth = {
                     format = "󰂲";
@@ -149,37 +149,11 @@
                     border-radius: 4px;
                 }
 
-                #idle_inhibitor {
-                    margin: 4px 30px 4px 15px;
-                    padding-right: 15px;
-                    border-radius: 4px;
-                }
-
-                #idle_inhibitor.activated {
-                    color: #3C3836;
-                    background: #FABD2F;
-                }
-
                 #workspaces button {
                     padding: 0;
                 }
                 #workspaces button.active {
                     background: #689d6a;
-                }
-
-                #custom-bat.critical, #custom-microphone {
-                    color: #FB4934;
-                }
-
-                /* Layout */
-                #custom-bat {
-                    margin: 0 20px 0 30px;
-                }
-                #pulseaudio {
-                    margin-left: 30px;
-                }
-                #network {
-                    margin-left: 30px;
                 }
             '';
         };
