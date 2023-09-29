@@ -1,18 +1,16 @@
 { config, lib, pkgs, user, ... }:
 
 {
-    home-manager.users.${user} = {
-        programs.zsh = {
+    programs.zsh = {
+        enable = true;
+        shellAliases = {
+            ll = "ls -l";
+            update = "sudo nixos-rebuild switch --flake /etc/home/niek/nixos-config#work";
+        };
+        ohMyZsh = {
             enable = true;
-            shellAliases = {
-                ll = "ls -l";
-                update = "sudo nixos-rebuild switch --flake /etc/home/niek/nixos-config#work";
-            };
-            ohMyZsh = {
-                enable = true;
-                plugins = [ "git" "thefuck" ];
-                theme = "robbyrussell";
-            };
+            plugins = [ "git" "thefuck" ];
+            theme = "robbyrussell";
         };
     };
 }
