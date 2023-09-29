@@ -9,7 +9,7 @@
         home.file = {
             ".config/hypr/hyprpaper.conf".text = ''
                 preload = ~/nixos-config/modules/wallpaper/background.jpg
-                wallpaper = eDP-1,~/nixos-config/nixos/modules/wallpaper/background.jpg
+                wallpaper = eDP-1,~/nixos-config/modules/wallpaper/background.jpg
             '';
         };
     };
