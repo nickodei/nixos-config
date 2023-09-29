@@ -33,6 +33,7 @@
   programs.kitty = {
     enable = true;
     font.name = "SauceCodePro NFM";
+    shellIntegration.enableZshIntegration = true;
   };
 
   programs.vscode = {
