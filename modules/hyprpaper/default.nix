@@ -11,6 +11,6 @@
                 preload = /etc/nixos/modules/wallpaper/background.jpg
                 wallpaper = eDP-1,/etc/nixos/modules/wallpaper/background.jpg
             '';
-        }
+        };
     };
 }
