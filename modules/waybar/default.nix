@@ -17,9 +17,9 @@
                     "hyprland/workspaces"
                 ];
                 modules-right = [
-                    "clock"
                     "cpu"
                     "memory"
+                    "clock"
                 ];
                 modules-left = [
                     "network"
@@ -92,12 +92,12 @@
                 };
                 cpu = {
                     interval = 10;
-                    format = "{}% ";
+                    format = "{usage}% ";
                     max-length = 10;
                 };
                 memory = {
                     interval = 30;
-                    format = "{used:0.1f} ";
+                    format = "{used:0.1f}G ";
                     max-length = 10;
                 };
             }];
