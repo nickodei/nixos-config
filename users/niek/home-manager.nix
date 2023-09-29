@@ -36,6 +36,7 @@
 
   programs.vscode = {
     enable = true;
+    package = pkgs.vscodium;
   };
 
   programs.firefox = {
