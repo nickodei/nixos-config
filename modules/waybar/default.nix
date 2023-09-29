@@ -72,7 +72,7 @@
                     on-click-right = "pavucontrol";
                 };
                 "pulseaudio#mic" = {
-                    format = "{volume}% {format_source}";
+                    format = "{format_source}";
                     format-source = "";
                     format-source-muted = "";
                     on-click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
@@ -96,9 +96,9 @@
                     font-size: 16px;
                 }
 
-                window {
-                    background: #282828;
-                }
+                //window {
+                //    background: #282828;
+                //}
 
                 label {
                     padding: 0 8px;
