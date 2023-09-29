@@ -31,11 +31,11 @@
                     "custom/bat"
                 ];
                 "custom/bat" = {
-                    exec = "~/.config/waybar/bat.sh";
+                    #exec = "~/.config/waybar/bat.sh";
                     interval = 5;
                 };
                 "custom/microphone" = {
-                    exec = "~/.config/waybar/microphone.sh";
+                    #exec = "~/.config/waybar/microphone.sh";
                     on-click = "pavucontrol";
                     format = "{}";
                     interval = 2;
@@ -92,7 +92,7 @@
                 };
                 "custom/pacman" = {
                     interval = 3600;
-                    exec = "~/.config/waybar/pacman.sh";
+                    #exec = "~/.config/waybar/pacman.sh";
                     on-click = "kitty -e paru -Syu && pkill -SIGRTMIN+8 waybar";
                     signal = 8;
                     tooltip = false;
@@ -100,7 +100,7 @@
                 image = {
                     interval = 600;
                     exec-if = "ping wttr.in -c 1";
-                    exec = "~/.config/waybar/weather.sh";
+                    #exec = "~/.config/waybar/weather.sh";
                     on-click = "$BROWSER https://www.3bmeteo.com/meteo/luzzi &";
                 };
             }];
