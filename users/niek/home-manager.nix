@@ -1,21 +1,44 @@
-{ config, lib, pkgs, ... }:
 
-{
-  # Home-manager 22.11 requires this be set. We never set it so we have
-  # to use the old state version.
-  home.stateVersion = "18.09";
+{ config, pkgs, inputs, ... }:
 
-  #---------------------------------------------------------------------
-  # Desktop
-  #---------------------------------------------------------------------
-  imports = [ ../../modules/hyprland/waybar/home.nix ];
+{ 
+  imports = [
+    inputs.hyprland.homeManagerModules.default
+  ];
 
-  #---------------------------------------------------------------------
+  # Home - Default Settings
+  home.username = "niek";
+  home.homeDirectory = "/home/niek";
+
+  home.stateVersion = "22.11";
+  programs.home-manager.enable = true;
+
+  home.pointerCursor = {
+    name = "Adwaita";
+    size = 32;
+    package = pkgs.gnome.adwaita-icon-theme;
+    x11 = {
+      enable = true;
+      defaultCursor = "Adwaita";
+    };
+  };
+
   # Programs
-  #---------------------------------------------------------------------
   programs.git = {
     enable = true;
-    userName = "Niek Deibus";
+    userName  = "Niek Deibus";
     userEmail = "nickdeibus@outlook.de";
+  };
+
+  programs.kitty = {
+    enable = true;
+  };
+
+  programs.vscode = {
+    enable = true;
+  };
+
+  programs.firefox = {
+    enable = true;
   };
 }
