@@ -96,9 +96,9 @@
                     font-size: 16px;
                 }
 
-                //window {
-                //    background: #282828;
-                //}
+                /* window {
+                    background: #282828;
+                } */
 
                 label {
                     padding: 0 8px;
