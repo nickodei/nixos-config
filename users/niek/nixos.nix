@@ -11,6 +11,7 @@
 
   environment.systemPackages = with pkgs; [
     hyprland
+    gnumake
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     xwayland
