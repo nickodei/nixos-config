@@ -14,30 +14,19 @@
                 spacing = 1;
                 height = 32;
                 modules-left = [
-                    "idle_inhibitor"
-                    "wlr/workspaces"
+                    "sway/workspaces"
                 ];
                 modules-center = [
                     "clock"
                 ];
                 modules-right = [
-                    "custom/microphone"
                     "network"
                     "bluetooth"
                     "pulseaudio"
+                    "pulseaudio#mic"
                     "backlight"
-                    "custom/bat"
+                    "battery"
                 ];
-                "custom/bat" = {
-                    exec = "~/.config/waybar/bat.sh";
-                    interval = 5;
-                };
-                "custom/microphone" = {
-                    exec = "~/.config/waybar/microphone.sh";
-                    on-click = "pavucontrol";
-                    format = "{}";
-                    interval = 2;
-                };
                 bluetooth = {
                     format = "󰂲";
                     format-connected = "󰂯";
@@ -46,6 +35,17 @@
                     tooltip-format-enumerate-connected = "{device_alias}\t{device_address}";
                     tooltip-format-enumerate-connected-battery = "{device_alias}\t{device_address}\t{device_battery_percentage}%";
                     on-click = "kitty -e bluetoothctl";
+                };
+                battery = {
+                    bat = "BAT0";
+                    interval = 60;
+                    states = {
+                        warning = 30;
+                        critical = 15;
+                    };
+                    format = "{capacity}% {icon}";
+                    format-icons = ["" "" "" "" ""];
+                    max-length = 25;
                 };
                 network = {
                     format-wifi = "{icon} ";
@@ -71,6 +71,13 @@
                     on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
                     on-click-right = "pavucontrol";
                 };
+                "pulseaudio#mic" = {
+                    format = "{format_source}";
+                    format-source = "";
+                    format-source-muted = "";
+                    on-click = "pactl set-source-mute @DEFAULT_SOURCE@ toggle";
+                    tooltip = false;
+                };
                 clock = {
                     interval = 60;
                     tooltip-format = "{calendar}";
@@ -80,13 +87,6 @@
                         };
                     };
                     timezone = "Europe/Rome";
-                };
-                idle_inhibitor = {
-                    format = "{icon}";
-                    format-icons = {
-                        activated = "";
-                        deactivated = "鈴";
-                    };
                 };
             }];
             style = ''
@@ -162,33 +162,6 @@
                     [[ $(wpctl get-volume @DEFAULT_SOURCE@ | rg MUTED) ]] && text=""
 
                     echo -e "$text\n$(wpctl get-volume @DEFAULT_SOURCE@)"
-                '';
-                executable = true;
-            };
-            ".config/waybar/bat.sh" = {
-                text = ''
-                    BAT1=$( < /sys/class/power_supply/BAT0/capacity )
-                    BAT2=$( < /sys/class/power_supply/BAT1/capacity )
-                    LEVEL=$(( ($BAT1 + $BAT2) / 2 ))
-
-                    STATUS1=$( < /sys/class/power_supply/BAT0/status )
-                    STATUS2=$( < /sys/class/power_supply/BAT1/status )
-                    [[ $STATUS1 == "Charging" || $STATUS2 == "Charging" ]] && CHARGING="  󱐋"
-
-                    if   [[ $LEVEL -lt 20 ]]; then
-                        ICON=" "
-                        CLASS="critical"
-                    elif [[ $LEVEL -lt 40 ]]; then
-                        ICON=""
-                    elif [[ $LEVEL -lt 60 ]]; then
-                        ICON=""
-                    elif [[ $LEVEL -lt 80 ]]; then
-                        ICON=""
-                    else
-                        ICON=""
-                    fi
-
-                    echo -e "$LEVEL% $ICON$CHARGING\n\n$CLASS"
                 '';
                 executable = true;
             };
