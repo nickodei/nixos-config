@@ -24,6 +24,7 @@
                     "clock"
                 ];
                 modules-left = [
+                    "custom/nixos"
                     "network"
                     "bluetooth"
                     "pulseaudio"
@@ -106,6 +107,9 @@
                     format = "{percentage_used}% 󰋊";
                     path = "/";
                 };
+                "custom/nixos" = {
+                    format = "";
+                };
             }];
             style = ''
                 * {
@@ -118,17 +122,16 @@
                     background: transparent;
                 }
 
-
-		.modules-left, 
-		.modules-center, 
-		.modules-right {
-		    background: #282828;
-		    margin: 8px;
-		    border-radius: 8px;
-		    border: solid 2px #928374;
-		    padding-left: 4px;
-		    padding-right: 4px;
-		}
+                .modules-left, 
+                .modules-center, 
+                .modules-right {
+                    background: #282828;
+                    margin: 8px;
+                    border-radius: 8px;
+                    border: solid 2px #928374;
+                    padding-left: 4px;
+                    padding-right: 4px;
+                }
 
                 label {
                     padding: 0 8px;
