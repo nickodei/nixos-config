@@ -37,8 +37,7 @@
   };
 
   fonts.fonts = with pkgs; [
-    nerdfonts
-    meslo-lgs-nf
+    nerdfonts.override { withFont = "Inconsolata" } 
   ];
 
   security.polkit.enable = true;

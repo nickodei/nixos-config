@@ -18,11 +18,9 @@
                     "wlr/workspaces"
                 ];
                 modules-center = [
-                    "image"
                     "clock"
                 ];
                 modules-right = [
-                    "custom/pacman"
                     "custom/microphone"
                     "network"
                     "bluetooth"
@@ -89,19 +87,6 @@
                         activated = "";
                         deactivated = "鈴";
                     };
-                };
-                "custom/pacman" = {
-                    interval = 3600;
-                    #exec = "~/.config/waybar/pacman.sh";
-                    on-click = "kitty -e paru -Syu && pkill -SIGRTMIN+8 waybar";
-                    signal = 8;
-                    tooltip = false;
-                };
-                image = {
-                    interval = 600;
-                    exec-if = "ping wttr.in -c 1";
-                    #exec = "~/.config/waybar/weather.sh";
-                    on-click = "$BROWSER https://www.3bmeteo.com/meteo/luzzi &";
                 };
             }];
             style = ''
