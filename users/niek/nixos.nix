@@ -4,6 +4,7 @@
   imports = [
     ../../modules/waybar
     ../../modules/hyprland
+    ../../modules/hyprpaper
   ];
 
   # Add ~/.local/bin to PATH
