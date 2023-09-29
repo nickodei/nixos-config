@@ -18,6 +18,8 @@
                 ];
                 modules-right = [
                     "clock"
+                    "cpu"
+                    "memory"
                 ];
                 modules-left = [
                     "network"
@@ -87,6 +89,16 @@
                         };
                     };
                     timezone = "Europe/Rome";
+                };
+                cpu = {
+                    interval = 10;
+                    format = "{}% ";
+                    max-length = 10;
+                };
+                memory = {
+                    interval = 30;
+                    format = "{used:0.1f} ";
+                    max-length = 10;
                 };
             }];
             style = ''
