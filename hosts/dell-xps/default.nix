@@ -46,6 +46,14 @@
   sound.enable = true;
   hardware.pulseaudio.enable = true;
 
+  # Bluetooth
+  hardware.bluetooth.enable = true;
+  hardware.bluetooth.settings = {
+    General = {
+      Enable = "Source,Sink,Media,Socket";
+    };
+  };
+
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   # List services that you want to enable:
