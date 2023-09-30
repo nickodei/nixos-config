@@ -37,6 +37,8 @@
     LIBSEAT_BACKEND = "logind";
   };
 
+  environment.shells = with pkgs; [ zsh ];
+
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
@@ -47,6 +49,9 @@
   xdg.portal.wlr.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+
+  programs.zsh.enable = true;
+
   ##-----------
   ## Users
   ##-----------
@@ -56,6 +61,7 @@
 
   users.users.niek = {
     isNormalUser = true;
+    shell = pkgs.zsh;
     home = "/home/niek";
     extraGroups = [ "docker" "wheel" ];
     hashedPassword = "$6$O.0kGRxN0suxw3GV$69okbAGk4peoBUWI42kxEbEYVgom/324.xIOpVPFtFJzS/fiolGqt3ek4gxCRhDYJXSxq/q97ws6JRpDG7MAy0";
