@@ -35,6 +35,7 @@
     settings = {
       scrollback_lines = 10000;
       enable_audio_bell = false;
+      window_padding_width = 5;
     };
     theme = "Catppuccin-Mocha";
     font.name = "SauceCodePro NFM";
@@ -44,6 +45,9 @@
 
   programs.fish = {
     enable = true;
+    interactiveShellInit = ''
+      set fish_greeting # Disable greeting
+    '';
     shellAbbrs = {
       ll = "ls -l";
       test = "sudo nixos-rebuild test --flake /home/niek/nixos-config#work";
@@ -62,7 +66,7 @@
     userSettings = {
       editor.fontFamily = "'SauceCodePro Nerd Font'";
       workbench.colorTheme = "Catppuccin Mocha";
-      workbench.iconTheme = "catppuccin-mocha";
+      workbench.iconTheme = "Catppuccin Mocha";
       window.zoomLevel = 1;
     };
   };

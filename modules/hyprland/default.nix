@@ -128,6 +128,7 @@
             bind = $mainMod, Q, killactive,
             bind = $mainMod, C, exec, codium --disable-gpu
             bind = $mainMod, O, exec, obsidian
+            bind = $mainMod, S, exec, spotify
             bind = $mainMod, M, exit,
             bind = $mainMod, E, exec, dolphin
             bind = $mainMod, V, togglefloating,

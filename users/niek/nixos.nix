@@ -13,6 +13,8 @@
     gnumake
     neofetch
     obsidian
+    spotify
+    jetbrains.rider
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     xwayland
