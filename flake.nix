@@ -10,6 +10,7 @@
     };
 
     hyprland.url = "github:hyprwm/Hyprland";
+    nurpkgs.url = "github:nix-community/NUR";
   }; 
 
   outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: let

@@ -126,7 +126,8 @@
             # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
             bind = $mainMod, K, exec, kitty
             bind = $mainMod, Q, killactive,
-            bind = $mainMod, C, exec, code
+            bind = $mainMod, C, exec, codium --disable-gpu
+            bind = $mainMod, O, exec, obsidian
             bind = $mainMod, M, exit,
             bind = $mainMod, E, exec, dolphin
             bind = $mainMod, V, togglefloating,

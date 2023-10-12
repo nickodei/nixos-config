@@ -5,15 +5,14 @@
     ../../modules/waybar
     ../../modules/hyprland
     ../../modules/hyprpaper
-    ../../modules/zsh
+    #../../modules/zsh
   ];
-
-  # Add ~/.local/bin to PATH
-  environment.localBinInPath = true;
 
   environment.systemPackages = with pkgs; [
     hyprland
     gnumake
+    neofetch
+    obsidian
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
     xwayland
@@ -37,7 +36,7 @@
     LIBSEAT_BACKEND = "logind";
   };
 
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = with pkgs; [ fish ];
 
   fonts.packages = with pkgs; [
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
@@ -49,8 +48,10 @@
   xdg.portal.wlr.enable = true;
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
+  nixpkgs.config.allowUnfree = true;
+  programs.fish.enable = true;
 
-  programs.zsh.enable = true;
+
 
   ##-----------
   ## Users
@@ -61,7 +62,7 @@
 
   users.users.niek = {
     isNormalUser = true;
-    shell = pkgs.zsh;
+    shell = pkgs.fish;
     home = "/home/niek";
     extraGroups = [ "docker" "wheel" ];
     hashedPassword = "$6$O.0kGRxN0suxw3GV$69okbAGk4peoBUWI42kxEbEYVgom/324.xIOpVPFtFJzS/fiolGqt3ek4gxCRhDYJXSxq/q97ws6JRpDG7MAy0";

@@ -15,7 +15,7 @@
 
   home.pointerCursor = {
     name = "Adwaita";
-    size = 32;
+    size = 24;
     package = pkgs.gnome.adwaita-icon-theme;
     x11 = {
       enable = true;
@@ -36,17 +36,43 @@
       scrollback_lines = 10000;
       enable_audio_bell = false;
     };
+    theme = "Catppuccin-Mocha";
     font.name = "SauceCodePro NFM";
     shellIntegration.mode = "enabled";
-    shellIntegration.enableZshIntegration = true;
+    shellIntegration.enableFishIntegration = true;
+  };
+
+  programs.fish = {
+    enable = true;
+    shellAbbrs = {
+      ll = "ls -l";
+      test = "sudo nixos-rebuild test --flake /home/niek/nixos-config#work";
+      update = "sudo nixos-rebuild switch --flake /home/niek/nixos-config#work";
+    };
   };
 
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
+    extensions = with pkgs.vscode-extensions; [
+      bbenoist.nix
+      catppuccin.catppuccin-vsc
+      catppuccin.catppuccin-vsc-icons
+    ];
+    userSettings = {
+      editor.fontFamily = "'SauceCodePro Nerd Font'";
+      workbench.colorTheme = "Catppuccin Mocha";
+      workbench.iconTheme = "catppuccin-mocha";
+      window.zoomLevel = 1;
+    };
   };
 
   programs.firefox = {
     enable = true;
+    #profiles."niek" = {
+    #  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    #    catppuccin
+    #  ];
+    #};
   };
 }
