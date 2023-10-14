@@ -33,6 +33,7 @@
                     "pulseaudio#mic"
                     "bluetooth"
                     "network"
+                    "custom/clock-icon"
                     "clock"
                 ];
                 bluetooth = {
@@ -149,6 +150,9 @@
                 };
                 "custom/nixos" = {
                     format = "";
+                };
+                "custom/clock-icon" = {
+                    format = "";
                 };
             }];
             style = ''
@@ -285,6 +289,11 @@
                     margin-left: -1px;
                 }
 
+                #pulseaudio.mic {
+                    border-radius: 0px 5px 5px 0px;
+                    margin-right: 5px;
+                }
+
                 #custom-right-arr {
                     color: #8aadf4;
                 }
@@ -296,7 +305,7 @@
 
                 #network {
                     color: #c6a0f6;
-                    margin-right: 10px;
+                    margin-right: 5px;
                 }
 
                 #custom-dot {
@@ -312,13 +321,9 @@
                 }
 
                 #custom-clock-icon {
-                    background-color: #cad3f5;
-                    color: #181926;
-                    padding-left: 10px;
-                    padding-right: 10px;
+                    color: #cad3f5;
                     margin-top: 5px;
                     margin-bottom: 5px;
-                    border-radius: 5px;
                 }
 
                 #clock {

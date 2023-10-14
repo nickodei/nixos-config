@@ -71,6 +71,16 @@
     };
   };
 
+  programs.neovim = {
+    enable = true;
+    plugins = [
+      pkgs.vimPlugins.nvim-treesitter.withAllGrammars
+    ];
+    extraConfig = ''
+      set number relativenumber
+    '';
+  };
+
   programs.firefox = {
     enable = true;
     #profiles."niek" = {
