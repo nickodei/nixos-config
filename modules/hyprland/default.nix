@@ -126,7 +126,7 @@
             # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
             bind = $mainMod, K, exec, kitty
             bind = $mainMod, Q, killactive,
-            bind = $mainMod, C, exec, codium --disable-gpu
+            bind = $mainMod, C, exec, codium
             bind = $mainMod, O, exec, obsidian
             bind = $mainMod, S, exec, spotify
             bind = $mainMod, M, exit,

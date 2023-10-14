@@ -36,8 +36,6 @@
 
     NIXOS_OZONE_WL = "1";
     LIBSEAT_BACKEND = "logind";
-
-    
   };
 
   environment.shells = with pkgs; [ fish ];

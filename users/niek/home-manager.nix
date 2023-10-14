@@ -67,6 +67,7 @@
       editor.fontFamily = "'SauceCodePro Nerd Font'";
       workbench.colorTheme = "Catppuccin Mocha";
       workbench.iconTheme = "Catppuccin Mocha";
+      window.titleBarStyle = "custom";
       window.zoomLevel = 1;
     };
   };
