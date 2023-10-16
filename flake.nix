@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
     home-manager = {
       url = "github:nix-community/home-manager";
@@ -13,7 +14,7 @@
     nurpkgs.url = "github:nix-community/NUR";
   }; 
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs: let
+  outputs = { self, nixpkgs, home-manager, hyprland,  nixos-hardware, ... }@inputs: let
     mkSystem = import ./lib/mksystem.nix {
       inherit nixpkgs inputs;
     };

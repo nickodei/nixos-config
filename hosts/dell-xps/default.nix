@@ -6,15 +6,20 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  networking.networkmanager.enable = true;  # Easiest to use and most distros use this by default.
+  systemd.services.NetworkManager-wait-online.enable = false;
+  networking = {
+    networkmanager.enable = true;
+    dhcpcd.wait = "background";
+  };
+
 
   # Set your time zone.
   time.timeZone = "Europe/Berlin";
@@ -42,16 +47,6 @@
     powerManagement.enable = false;
     powerManagement.finegrained = false;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  hardware.nvidia.prime = {
-    offload = {
-      enable = true;
-      enableOffloadCmd = true;
-    };
-
-    intelBusId = "PCI:0:2:0";
-    nvidiaBusId = "PCI:1:0:0";
   };
 
   services.xserver.videoDrivers = ["nvidia"];

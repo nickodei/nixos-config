@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs,  ... }:
 
 {
   imports = [
@@ -14,6 +14,7 @@
     neofetch
     obsidian
     spotify
+    libva
     jetbrains.rider
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
@@ -36,6 +37,14 @@
 
     NIXOS_OZONE_WL = "1";
     LIBSEAT_BACKEND = "logind";
+
+    # Mozilla
+    NVD_BACKEND="direct"; 
+    MOZ_ENABLE_WAYLAND = "1";
+    MOZ_DISABLE_RDD_SANDBOX="1";
+    MOZ_LOG="PlatformDecoderModule:5";
+
+    LIBVA_DRIVER_NAME = "nvidia";
   };
 
   environment.shells = with pkgs; [ fish ];
@@ -51,9 +60,13 @@
   xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
 
   nixpkgs.config.allowUnfree = true;
-  programs.fish.enable = true;
-
-
+  programs.fish = {
+    enable = true;
+    loginShellInit = ''
+      set TTY1 (tty)
+      [ "$TTY1" = "/dev/tty1" ] && exec Hyprland
+    '';
+  };
 
   ##-----------
   ## Users

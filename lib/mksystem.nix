@@ -16,6 +16,7 @@ in nixpkgs.lib.nixosSystem rec {
   modules = [
     ../hosts/${name}
     ../users/${user}/nixos.nix
+    inputs.nixos-hardware.nixosModules.dell-xps-17-9700-nvidia
     inputs.home-manager.nixosModules.home-manager {
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
