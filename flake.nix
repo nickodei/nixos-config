@@ -10,6 +10,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    
     hyprland.url = "github:hyprwm/Hyprland";   
   }; 
 
@@ -17,6 +22,8 @@
     mkSystem = import ./lib/mksystem.nix {
       inherit nixpkgs inputs;
     };
+
+    
   in {
     nixosConfigurations.work = mkSystem "dell-xps" rec {
       system = "x86_64-linux";
