@@ -49,7 +49,10 @@
 
   environment.shells = with pkgs; [ fish ];
 
+
+
   fonts.packages = with pkgs; [
+    inter
     (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
   ];
 

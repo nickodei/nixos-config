@@ -8,7 +8,7 @@ name: {
 }:
 
 let
-  # The config files for this system.
+
 in nixpkgs.lib.nixosSystem rec {
   inherit system;
 

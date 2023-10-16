@@ -10,8 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    hyprland.url = "github:hyprwm/Hyprland";
-    nurpkgs.url = "github:nix-community/NUR";
+    hyprland.url = "github:hyprwm/Hyprland";   
   }; 
 
   outputs = { self, nixpkgs, home-manager, hyprland,  nixos-hardware, ... }@inputs: let

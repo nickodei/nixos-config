@@ -8,24 +8,8 @@
             enableNvidiaPatches = true;
             xwayland.enable = true;
             extraConfig = ''
-            # This is an example Hyprland config file.
-            #
-            # Refer to the wiki for more information.
-
-            #
-            # Please note not all available settings / options are set here.
-            # For a full list, see the wiki
-            #
-
-            # See https://wiki.hyprland.org/Configuring/Monitors/
             monitor=eDP-1,3840x2400@60,0x0,2
             exec-once = waybar & hyprpaper
-
-
-            # See https://wiki.hyprland.org/Configuring/Keywords/ for more
-
-            # Execute your favorite apps at launch
-            # exec-once = waybar & hyprpaper & firefox
 
             # Source a file (multi-file configs)
             # source = ~/.config/hypr/myColors.conf
@@ -33,17 +17,10 @@
             # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
             input {
                 kb_layout = de
-                kb_variant =
-                kb_model =
-                kb_options =
-                kb_rules =
-
                 follow_mouse = 1
-
                 touchpad {
-                    natural_scroll = false
+                    natural_scroll = true
                 }
-
                 sensitivity = 0 # -1.0 - 1.0, 0 means no modification.
             }
 
@@ -104,7 +81,7 @@
 
             gestures {
                 # See https://wiki.hyprland.org/Configuring/Variables/ for more
-                workspace_swipe = false
+                workspace_swipe = true
             }
 
             # Example per-device config

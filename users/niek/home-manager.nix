@@ -1,10 +1,18 @@
 
 { config, pkgs, inputs, ... }:
 
-{ 
+let 
+
+in { 
   imports = [
     inputs.hyprland.homeManagerModules.default
   ];
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
+      inherit pkgs;
+    };
+  };
 
   # Home - Default Settings
   home.username = "niek";
@@ -87,6 +95,9 @@
     enable = true;
     profiles = {
       niek = {
+        #extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+        #  catppuccin-mocha-lavender
+        #];
         bookmarks = [
           {
             name = "TUM";
@@ -123,7 +134,7 @@
 
     #profiles."niek" = {
     #  extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-    #    catppuccin
+    #    catppuccin catppuccin-mocha-lavender-
     #  ];
     #};
   };
