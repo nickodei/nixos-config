@@ -1,10 +1,6 @@
 { pkgs,  ... }:
 
 {
-  imports = [
-    ../../modules/hyprpaper
-  ];
-
   environment.systemPackages = with pkgs; [
     hyprland
     gnumake

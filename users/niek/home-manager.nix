@@ -18,6 +18,7 @@
     vscodium.enable = true;
 
     hyprland.enable = true;
+    hyprpaper.enable = true;
     waybar.enable = true;
   };
 
