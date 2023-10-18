@@ -2,8 +2,6 @@
 
 {
   imports = [
-      ./browser
-      ./shell
-      ./terminal
+      ./fish
   ];
 }

@@ -1,5 +1,5 @@
 
-{ config, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 { 
   imports = [
@@ -9,17 +9,13 @@
     inputs.hyprland.homeManagerModules.default
   ];
 
-  #config.modules = {
-  #  firefox.enable = true;
-  #};
+  modules = {
+    firefox.enable = true;
+    kitty.enable = true;
+    fish.enable = true;
+  };
 
   #colorScheme = inputs.nix-colors.colorScheme.catppuccin-mocha;
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    nur = import (builtins.fetchTarball "https://github.com/nix-community/NUR/archive/master.tar.gz") {
-      inherit pkgs;
-    };
-  };
 
   # Home - Default Settings
   home.username = "niek";
@@ -43,31 +39,6 @@
     enable = true;
     userName  = "Niek Deibus";
     userEmail = "nickdeibus@outlook.de";
-  };
-
-  programs.kitty = {
-    enable = true;
-    settings = {
-      scrollback_lines = 10000;
-      enable_audio_bell = false;
-      window_padding_width = 5;
-    };
-    theme = "Catppuccin-Mocha";
-    font.name = "SauceCodePro NFM";
-    shellIntegration.mode = "enabled";
-    shellIntegration.enableFishIntegration = true;
-  };
-
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      set fish_greeting # Disable greeting
-    '';
-    shellAbbrs = {
-      ll = "ls -l";
-      test = "sudo nixos-rebuild test --flake /home/niek/nixos-config#work";
-      update = "sudo nixos-rebuild switch --flake /home/niek/nixos-config#work";
-    };
   };
 
   programs.nixvim = {

@@ -19,7 +19,7 @@
     nix-colors.url = "github:misterio77/nix-colors";
   }; 
 
-  outputs = { self, nixpkgs, ... }@inputs: let
+  outputs = { home-manager, nixpkgs, ... }@inputs: let
     mkSystem = import ./lib/mksystem.nix {
       inherit nixpkgs inputs;
     };
