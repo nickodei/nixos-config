@@ -9,11 +9,18 @@ in {
 
     options.modules.hyprland = { 
         enable = lib.mkEnableOption "hyprland"; 
+        hidpi = lib.mkEnableOption "Hdpi Display";
     };
 
     config = lib.mkIf cfg.enable {
+        home.packages = [
+            pkgs.dconf
+        ];
+
         home.sessionVariables = {
-            #GTK_THEME="Catppuccin-Frappe-Standard-Lavender-dark:dark";
+            GTK_THEME = "Catppuccin-Mocha-Standard-Lavender-dark:dark";
+            GDK_SCALE = lib.mkIf (cfg.hidpi) 2;
+            XCURSOR_SIZE = lib.mkIf (cfg.hidpi) 32;
         };
 
         wayland.windowManager.hyprland = {
@@ -21,21 +28,23 @@ in {
             systemdIntegration = true;
             enableNvidiaPatches = true;
             xwayland.enable = true;
-            settings = {
-                monitor = map(monitor:
-                    let
-                        resolution = "${toString monitor.width}x${toString monitor.height}@${toString monitor.refreshRate}";
-                        position = "${toString monitor.x}x${toString monitor.y}";
-                    in
-                        "${monitor.name},${if monitor.enabled then "${resolution},${position},${monitor.scale}" else "disable"}"
-                    )(config.monitors);
-            };
-
             extraConfig = ''
-            exec-once = waybar & hyprpaper
+            # Monitors
+            ${builtins.concatStringsSep "\n" (map(m:
+                let
+                    resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+                    position = "${toString m.x}x${toString m.y}";
+                in
+                    "${m.name},${if m.enabled then "${resolution},${position},${toString m.scale}" else "disable"}"
+            )(config.monitors))}
 
-            # Source a file (multi-file configs)
-            # source = ~/.config/hypr/myColors.conf
+            # Startup Applications
+            exec-once = waybar & hyprpaper
+            
+            ${if cfg.hidpi then ''
+                # Fix HiDPI XWayland windows
+                exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
+            '' else ""}
 
             # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
             input {
@@ -178,13 +187,28 @@ in {
             '';
         };
 
-        home.pointerCursor = {
-            name = "Adwaita";
-            size = 24;
-            package = pkgs.gnome.adwaita-icon-theme;
-            x11 = {
-                enable = true;
-                defaultCursor = "Adwaita";
+        home = {
+            pointerCursor = {
+                size = 24;
+                name = "Adwaita";
+                gtk.enable = true;
+                package = pkgs.gnome.adwaita-icon-theme;
+            };
+        };
+        gtk = {
+            enable = true;
+            theme = {
+                name = "Catppuccin-Mocha-Compact-Pink-Dark";
+                package = pkgs.catppuccin-gtk.override {
+                    accents = [ "pink" ];
+                    size = "compact";
+                    tweaks = [ "rimless" "black" ];
+                    variant = "mocha";
+                };
+            };
+            iconTheme = {
+                package = pkgs.gnome.adwaita-icon-theme;
+                name = "Adwaita";
             };
         };
     };

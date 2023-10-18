@@ -17,7 +17,11 @@
     git.enable = true;
     vscodium.enable = true;
 
-    hyprland.enable = true;
+    hyprland = {
+      enable = true;
+      hidpi = true;
+    };
+    
     hyprpaper.enable = true;
     waybar.enable = true;
 
@@ -25,7 +29,6 @@
     direnv.enable = true;
   };
 
-  # Define Monitors for Hyprland
   monitors = [
     {
       name = "eDP-1";
@@ -35,7 +38,7 @@
       x = 0;
       y = 0;
       scale = 2;
-      enable = true;
+      enabled = true;
     }
   ];
 
