@@ -21,6 +21,14 @@ in {
                 workbench.colorTheme = "Catppuccin Mocha";
                 workbench.iconTheme = "catppuccin-mocha";
                 window.titleBarStyle = "custom";
+                catppuccin.accentColor = "lavender";
+                catppuccin.customUIColors = {
+                    mocha = {
+                        statusBar.foreground = "accent";
+                    };
+                };
+                editor.semanticHighlighting.enabled = true;
+                terminal.integrated.minimumContrastRatio = 1;
                 window.zoomLevel = 1;
                 workbench.startupEditor = "none";
             };

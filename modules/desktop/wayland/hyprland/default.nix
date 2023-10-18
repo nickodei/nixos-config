@@ -18,7 +18,7 @@ in {
         ];
 
         home.sessionVariables = {
-            GTK_THEME = "Catppuccin-Mocha-Standard-Lavender-dark:dark";
+            #GTK_THEME = "Catppuccin-Mocha-Standard-Lavender-dark:dark";
             GDK_SCALE = lib.mkIf (cfg.hidpi) 2;
             XCURSOR_SIZE = lib.mkIf (cfg.hidpi) 32;
         };
@@ -198,12 +198,12 @@ in {
         gtk = {
             enable = true;
             theme = {
-                name = "Catppuccin-Mocha-Compact-Pink-Dark";
+                name = "Catppuccin-Mocha-Compact-Lavender-Dark";
                 package = pkgs.catppuccin-gtk.override {
-                    accents = [ "pink" ];
-                    size = "compact";
-                    tweaks = [ "rimless" "black" ];
+                    accents = [ "lavender" ];
+                    tweaks = [ "rimless" "normal" ];
                     variant = "mocha";
+                    size = "compact";
                 };
             };
             iconTheme = {
