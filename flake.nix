@@ -27,6 +27,6 @@
     nixosConfigurations.work = mkSystem "dell-xps" rec {
       system = "x86_64-linux";
       user   = "niek";
-    };
+    };                
   };
 }

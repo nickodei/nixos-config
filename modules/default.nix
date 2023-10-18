@@ -8,5 +8,6 @@
       ./editor
       ./util
       ./desktop
+      ./development
   ];
 }

@@ -20,6 +20,9 @@
     hyprland.enable = true;
     hyprpaper.enable = true;
     waybar.enable = true;
+
+    # Development
+    direnv.enable = true;
   };
 
   # Home - Default Settings

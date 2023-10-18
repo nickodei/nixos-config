@@ -3,15 +3,12 @@
 let
     cfg = config.modules.hyprpaper;
 in {
-    environment.systemPackages = with pkgs; [
-        hyprpaper
-    ];
-
     options.modules.hyprpaper = { 
         enable = lib.mkEnableOption "hyprpaper"; 
     };
 
     config = lib.mkIf cfg.enable {
+        home.packages = [ pkgs.hyprpaper ];
         home.file = {
             ".config/hypr/hyprpaper.conf".text = ''
                 preload = ~/nixos-config/modules/wallpaper/Moon-Commet.jpg
