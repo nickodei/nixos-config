@@ -12,6 +12,7 @@ in {
       enable = true;
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
+        eval "$(direnv hook fish)"
       '';
       shellAbbrs = {
         ll = "ls -l";
