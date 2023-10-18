@@ -2,10 +2,7 @@
 
 {
   imports = [
-    ../../modules/waybar
-    ../../modules/hyprland
     ../../modules/hyprpaper
-    #../../modules/zsh
   ];
 
   environment.systemPackages = with pkgs; [

@@ -1,11 +1,13 @@
-{ config, lib, pkgs, user, ... }:
+{ inputs, pkgs, lib, config, ... }:
 
-{
-    environment.systemPackages = with pkgs; [
-        waybar
-    ];
+let
+    cfg = config.modules.waybar;
+in {
+    options.modules.waybar = { 
+        enable = lib.mkEnableOption "waybar"; 
+    };
 
-    home-manager.users.${user} = {
+    config = lib.mkIf cfg.enable {
         programs.waybar = {
             enable = true;
             settings = [{

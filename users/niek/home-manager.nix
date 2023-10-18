@@ -2,7 +2,12 @@
 { config, lib, pkgs, inputs, ... }:
 
 { 
-  imports = [ ../../modules ];
+  imports = [ 
+    ../../modules
+    inputs.nix-colors.homeManagerModules.default
+  ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   modules = {
     firefox.enable = true;
@@ -11,7 +16,9 @@
     nvim.enable = true;
     git.enable = true;
     vscodium.enable = true;
+
     hyprland.enable = true;
+    waybar.enable = true;
   };
 
   # Home - Default Settings
@@ -20,14 +27,4 @@
 
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;
-
-  home.pointerCursor = {
-    name = "Adwaita";
-    size = 24;
-    package = pkgs.gnome.adwaita-icon-theme;
-    x11 = {
-      enable = true;
-      defaultCursor = "Adwaita";
-    };
-  };
 }

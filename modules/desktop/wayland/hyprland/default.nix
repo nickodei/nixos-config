@@ -3,15 +3,15 @@
 let
     cfg = config.modules.hyprland;
 in {
+    imports = [
+        inputs.hyprland.homeManagerModules.default
+    ];
+
     options.modules.hyprland = { 
         enable = lib.mkEnableOption "hyprland"; 
     };
 
     config = lib.mkIf cfg.enable {
-        imports = [
-            inputs.hyprland.homeManagerModules.default
-        ];
-
         wayland.windowManager.hyprland = {
             enable = true;
             systemdIntegration = true;
@@ -163,6 +163,16 @@ in {
             bindm = $mainMod, mouse:272, movewindow
             bindm = $mainMod, mouse:273, resizewindow
             '';
+        };
+
+        home.pointerCursor = {
+            name = "Adwaita";
+            size = 24;
+            package = pkgs.gnome.adwaita-icon-theme;
+            x11 = {
+                enable = true;
+                defaultCursor = "Adwaita";
+            };
         };
     };
 }
