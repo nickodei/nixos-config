@@ -16,14 +16,13 @@
     };
     
     hyprland.url = "github:hyprwm/Hyprland";   
+    nix-colors.url = "github:misterio77/nix-colors";
   }; 
 
-  outputs = { self, nixpkgs, home-manager, hyprland,  nixos-hardware, ... }@inputs: let
+  outputs = { self, nixpkgs, ... }@inputs: let
     mkSystem = import ./lib/mksystem.nix {
       inherit nixpkgs inputs;
     };
-
-    
   in {
     nixosConfigurations.work = mkSystem "dell-xps" rec {
       system = "x86_64-linux";
