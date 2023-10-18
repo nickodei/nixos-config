@@ -1,7 +1,17 @@
-{ config, lib, pkgs, user, ... }:
+{ inputs, pkgs, lib, config, ... }:
 
-{
-    home-manager.users.${user} = {
+let
+    cfg = config.modules.hyprland;
+in {
+    options.modules.hyprland = { 
+        enable = lib.mkEnableOption "hyprland"; 
+    };
+
+    config = lib.mkIf cfg.enable {
+        imports = [
+            inputs.hyprland.homeManagerModules.default
+        ];
+
         wayland.windowManager.hyprland = {
             enable = true;
             systemdIntegration = true;

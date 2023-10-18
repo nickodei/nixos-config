@@ -5,5 +5,8 @@
       ./browser
       ./shell
       ./terminal
+      ./editor
+      ./util
+      ./desktop
   ];
 }

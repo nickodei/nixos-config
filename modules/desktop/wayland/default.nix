@@ -2,7 +2,6 @@
 
 {
   imports = [
-      ./nvim
-      ./vscodium
+      ./hyprland
   ];
 }
