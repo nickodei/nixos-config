@@ -25,6 +25,20 @@
     direnv.enable = true;
   };
 
+  # Define Monitors for Hyprland
+  monitors = [
+    {
+      name = "eDP-1";
+      width = 3840;
+      height = 2400;
+      refreshRate = 60;
+      x = 0;
+      y = 0;
+      scale = 2;
+      enable = true;
+    }
+  ];
+
   # Home - Default Settings
   home.username = "niek";
   home.homeDirectory = "/home/niek";

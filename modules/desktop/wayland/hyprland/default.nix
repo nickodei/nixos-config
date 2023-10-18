@@ -21,8 +21,17 @@ in {
             systemdIntegration = true;
             enableNvidiaPatches = true;
             xwayland.enable = true;
+            settings = {
+                monitor = map(monitor:
+                    let
+                        resolution = "${toString monitor.width}x${toString monitor.height}@${toString monitor.refreshRate}";
+                        position = "${toString monitor.x}x${toString monitor.y}";
+                    in
+                        "${monitor.name},${if monitor.enabled then "${resolution},${position},${monitor.scale}" else "disable"}"
+                    )(config.monitors);
+            };
+
             extraConfig = ''
-            monitor=eDP-1,3840x2400@60,0x0,2
             exec-once = waybar & hyprpaper
 
             # Source a file (multi-file configs)
