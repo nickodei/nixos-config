@@ -12,20 +12,17 @@ in {
             enable = true;
             package = pkgs.vscodium;
             extensions = with pkgs.vscode-extensions; [
-                #bbenoist.nix
-                jnoortheen.nix-ide
+                bbenoist.nix
                 catppuccin.catppuccin-vsc
                 catppuccin.catppuccin-vsc-icons
             ];
             userSettings = {
                 editor.fontFamily = "'SauceCodePro Nerd Font'";
                 workbench.colorTheme = "Catppuccin Mocha";
-                workbench.iconTheme = "Catppuccin Mocha";
+                workbench.iconTheme = "catppuccin-mocha";
                 window.titleBarStyle = "custom";
                 window.zoomLevel = 1;
                 workbench.startupEditor = "none";
-                nix.enableLanguageServer = true;
-                nix.serverPath = "nixd";
             };
         };
     };
