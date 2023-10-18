@@ -42,6 +42,9 @@ in {
                             url = "https://mynixos.com";
                         }];
                     }];
+                    extensions = with inputs.firefox-addons.packages."x86_64-linux"; [
+
+                    ];
                 };
             };
         };

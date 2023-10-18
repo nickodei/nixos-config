@@ -12,6 +12,10 @@ in {
     };
 
     config = lib.mkIf cfg.enable {
+        home.sessionVariables = {
+            #GTK_THEME="Catppuccin-Frappe-Standard-Lavender-dark:dark";
+        };
+
         wayland.windowManager.hyprland = {
             enable = true;
             systemdIntegration = true;
