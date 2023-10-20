@@ -29,9 +29,16 @@
       inherit nixpkgs inputs;
     };
   in {
-    nixosConfigurations.work = mkSystem "dell-xps" rec {
+    nixosConfigurations.work = mkSystem {
+      host   = "dell-xps-17";
       system = "x86_64-linux";
       user   = "niek";
-    };                
+    };
+
+    nixosConfigurations.surface = mkSystem {
+      host   = "surface-pro";
+      system = "x86_64-linux";
+      user   = "niek";
+    };             
   };
 }

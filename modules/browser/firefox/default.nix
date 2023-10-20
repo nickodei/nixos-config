@@ -31,6 +31,10 @@ in {
                         {
                             name = "TUM Live";
                             url = "https://live.rbg.tum.de/";
+                        }
+                        {
+                            name = "GitLab LRZ";
+                            url = "https://gitlab.lrz.de/";
                         }];
                     }
                     {

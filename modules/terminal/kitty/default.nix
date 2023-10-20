@@ -17,6 +17,7 @@ in {
       };
       theme = "Catppuccin-Mocha";
       font.name = "SauceCodePro NFM";
+      font.size = 14;
       shellIntegration.mode = "enabled";
       shellIntegration.enableFishIntegration = true;
     };
