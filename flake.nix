@@ -32,13 +32,13 @@
     nixosConfigurations.work = mkSystem {
       host   = "dell-xps-17";
       system = "x86_64-linux";
-      user   = "niek";
+      user   = "main";
     };
 
     nixosConfigurations.surface = mkSystem {
       host   = "surface-pro";
       system = "x86_64-linux";
-      user   = "niek";
+      user   = "main";
     };             
   };
 }
