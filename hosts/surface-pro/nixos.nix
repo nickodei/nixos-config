@@ -7,6 +7,13 @@
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
   ];
 
+  boot.initrd.luks.devices = {
+    root = {
+      device = "/dev/nvme0n1p7";
+      preLVM = true;
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It's perfectly fine and recommended to leave
