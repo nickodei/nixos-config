@@ -29,18 +29,9 @@
     direnv.enable = true;
   };
 
-  monitors = [
-    {
-      name = "eDP-1";
-      width = 3840;
-      height = 2400;
-      refreshRate = 60;
-      x = 0;
-      y = 0;
-      scale = 2;
-      enabled = true;
-    }
-  ];
+  monitors = if (host == "dell-xps-17") 
+    then [available-monitors.dell-xps-17] 
+    else [available-monitors.surface-pro-8];
 
   # Home - Default Settings
   home.username = "${user}";
