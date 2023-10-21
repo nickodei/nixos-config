@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, host, ... }:
 
 let
     cfg = config.modules.hyprland;
@@ -26,7 +26,7 @@ in {
         wayland.windowManager.hyprland = {
             enable = true;
             systemdIntegration = true;
-            enableNvidiaPatches = true;
+            enableNvidiaPatches = if host == "dell-xps-17" then true else false;
             xwayland.enable = true;
             extraConfig = ''
             # Monitors
