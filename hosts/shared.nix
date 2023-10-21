@@ -1,9 +1,17 @@
 { inputs, config, pkgs, ... }:
 
 {
-    # Use the systemd-boot EFI boot loader.
-    #boot.loader.systemd-boot.enable = true;
-    boot.loader.efi.canTouchEfiVariables = true;
+    # Use the grub EFI boot loader.
+    hardware.opengl.enable = true;
+    boot.loader = {
+        efi.canTouchEfiVariables = true;
+        grub = {
+            devices = ["nodev"];
+            efiSupport = true;
+            enable = true;
+            useOSProber = true;
+        };
+    };
 
     # Network-manager
     systemd.services.NetworkManager-wait-online.enable = false;
