@@ -3,7 +3,7 @@
 {
   imports = [ 
     ../shared.nix
-    #./hardware-configuration.nix
+    ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.microsoft-surface-pro-intel
   ];
 
