@@ -1,5 +1,5 @@
 
-{ config, lib, pkgs, inputs, host, ... }:
+{ config, lib, pkgs, inputs, host, user, ... }:
 
 { 
   imports = [ 
@@ -43,8 +43,8 @@
   ];
 
   # Home - Default Settings
-  home.username = "niek";
-  home.homeDirectory = "/home/niek";
+  home.username = "${user}";
+  home.homeDirectory = "/home/${user}";
 
   home.stateVersion = "22.11";
   programs.home-manager.enable = true;

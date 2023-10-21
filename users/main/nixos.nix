@@ -37,7 +37,7 @@
     MOZ_DISABLE_RDD_SANDBOX="1";
     MOZ_LOG="PlatformDecoderModule:5";
 
-    LIBVA_DRIVER_NAME = "nvidia";
+    # LIBVA_DRIVER_NAME = "nvidia";
   };
 
   environment.shells = with pkgs; [ fish ];
@@ -72,7 +72,7 @@
   users.users.main = {
     isNormalUser = true;
     shell = pkgs.fish;
-    home = "/home/niek";
+    home = "/home/main";
     extraGroups = [ "docker" "wheel" ];
     hashedPassword = "$6$O.0kGRxN0suxw3GV$69okbAGk4peoBUWI42kxEbEYVgom/324.xIOpVPFtFJzS/fiolGqt3ek4gxCRhDYJXSxq/q97ws6JRpDG7MAy0";
   };
