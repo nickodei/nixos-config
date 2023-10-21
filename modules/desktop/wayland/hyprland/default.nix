@@ -15,6 +15,8 @@ in {
     config = lib.mkIf cfg.enable {
         home.packages = [
             pkgs.dconf
+	    pkgs.qt6.qtwayland
+	    pkgs.libsForQt5.qt5.qtwayland
         ];
 
         home.sessionVariables = {

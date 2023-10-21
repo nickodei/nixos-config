@@ -48,7 +48,6 @@ in {
                     on-click = "kitty -e bluetoothctl";
                 };
                 battery = {
-                    bat = "BAT0";
                     interval = 60;
                     states = {
                         warning = 30;

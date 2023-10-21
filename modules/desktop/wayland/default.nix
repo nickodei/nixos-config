@@ -5,5 +5,6 @@
       ./hyprland
       ./hyprpaper
       ./waybar
+      ./mako
   ];
 }
