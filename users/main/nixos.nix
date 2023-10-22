@@ -4,6 +4,7 @@
   environment.systemPackages = with pkgs; [
     hyprland
     gnumake
+    rnote
     neofetch
     obsidian
     spotify

@@ -41,7 +41,7 @@ in {
             )(config.monitors))}
 
             # Startup Applications
-            exec-once = waybar & hyprpaper
+            exec-once = waybar & hyprpaper & mako
             
             ${if cfg.hidpi then ''
                 # Fix HiDPI XWayland windows
