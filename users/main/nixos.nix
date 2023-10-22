@@ -4,7 +4,9 @@
   environment.systemPackages = with pkgs; [
     hyprland
     gnumake
+    swaylock-effects
     rnote
+    rofi-wayland
     pamixer
     brightnessctl
     neofetch
@@ -66,6 +68,12 @@
   };
 
   programs.thunar.enable = true;
+
+security.pam.services.swaylock = {
+    text = ''
+      auth include login
+    '';
+  };
 
   ##-----------
   ## Users

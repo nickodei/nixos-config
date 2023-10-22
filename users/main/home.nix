@@ -56,6 +56,10 @@ in {
     then [available-monitors.dell-xps-17] 
     else [available-monitors.surface-pro-8];
 
+  programs.wlogout = {
+    enable = true;
+  };
+
   # Home - Default Settings
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";

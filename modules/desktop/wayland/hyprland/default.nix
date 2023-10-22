@@ -140,7 +140,8 @@ in {
             bind = $mainMod, C, exec, codium
             bind = $mainMod, O, exec, obsidian
             bind = $mainMod, S, exec, spotify
-            bind = $mainMod, M, exit,
+            bind = $mainMod, L, exec, swaylock --screenshots --clock --indicator --indicator-radius 100 --indicator-thickness 7 --effect-blur 7x5 --effect-vignette 0.5:0.5 --ring-color bb00cc --key-hl-color 880033 --line-color 00000000 --inside-color 00000088 --separator-color 00000000 --grace 2 --fade-in 0.2
+	    bind = $mainMod, M, exit,
             bind = $mainMod, E, exec, thunar
             bind = $mainMod, V, togglefloating,
             bind = $mainMod, R, exec, wofi --show drun
