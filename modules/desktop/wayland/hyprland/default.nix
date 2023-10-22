@@ -148,6 +148,12 @@ in {
             bind = $mainMod, J, togglesplit, # dwindle
             bind = $mainMod, B, exec, firefox
 
+	    # Fn-Keys
+	    binde  = , XF86AudioRaiseVolume, exec, pamixer -i 5
+	    binde  = , XF86AudioLowerVolume, exec, pamixer -d 5
+	    bindle = , XF86AudioMute, exec, pamixer --toggle-mute
+	    binde  = , xf86MonBrightnessUp, exec, brightnessctl set +10%
+	    binde  = , xf86MonBrightnessDown, exec, brightnessctl set 10%-
 
             # Move focus with mainMod + arrow keys
             bind = $mainMod, left, movefocus, l
