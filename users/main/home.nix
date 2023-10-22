@@ -51,8 +51,8 @@ in {
     # Development
     direnv.enable = true;
   };
-
-  monitors = if (host == "dell-xps-17") 
+    
+    monitors = if (host == "dell-xps-17") 
     then [available-monitors.dell-xps-17] 
     else [available-monitors.surface-pro-8];
 

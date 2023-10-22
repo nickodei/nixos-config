@@ -65,6 +65,8 @@
     '';
   };
 
+  programs.thunar.enable = true;
+
   ##-----------
   ## Users
   ##-----------
