@@ -48,15 +48,17 @@ in {
                     on-click = "kitty -e bluetoothctl";
                 };
                 battery = {
-                    interval = 60;
-                    states = {
-                        warning = 30;
-                        critical = 15;
-                    };
-                    format = "{capacity}% {icon}";
-                    format-icons = ["" "" "" "" ""];
-                    max-length = 25;
-                };
+		    states = {
+			good = 95;
+			warning = 30;
+			critical = 20;
+		    };
+		    format = "{capacity}% {icon}";
+		    format-charging = "{capacity}% ";
+		    format-plugged = "{capacity}% ";
+		    format-alt = "{time} {icon}";
+		    format-icons = ["󰂎"  "󰁺"  "󰁻"  "󰁼"  "󰁽"  "󰁾"  "󰁿"  "󰂀"  "󰂁"  "󰂂"  "󰁹"];
+		};
                 "custom/window-name" = {
                     format = "<b>{}</b>";
                     interval = 1;
@@ -101,7 +103,7 @@ in {
                             today = "<b><u>{}</u></b>";
                         };
                     };
-                    timezone = "Europe/Rome";
+                    timezone = "Europe/Berlin";
                 };
                 cpu = {
                     interval = 10;
@@ -264,6 +266,7 @@ in {
                 }
 
                 #battery {
+		    font-size: 14px;
                     color: #a6da95;
                     margin: 0px 10px 0px 0px;
                 }
