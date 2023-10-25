@@ -1,4 +1,3 @@
-
 { config, lib, pkgs, inputs, host, user, ... }:
 
 let
@@ -24,8 +23,9 @@ let
       enabled = true;
     };
   };
-in { 
-  imports = [ 
+in
+{
+  imports = [
     ../../modules
     inputs.nix-colors.homeManagerModules.default
   ];
@@ -44,25 +44,19 @@ in {
       enable = true;
       hidpi = true;
     };
-    
+
     hyprpaper.enable = true;
     waybar.enable = true;
+    rofi.enable = true;
 
     # Development
     direnv.enable = true;
   };
-    
-    monitors = if (host == "dell-xps-17") 
-    then [available-monitors.dell-xps-17] 
-    else [available-monitors.surface-pro-8];
 
-    programs.rofi = {
-	enable = true;
-	package = pkgs.rofi-wayland;
-	extraConfig = {
-	    show-icons = true;
-	};
-    };
+  monitors =
+    if (host == "dell-xps-17")
+    then [ available-monitors.dell-xps-17 ]
+    else [ available-monitors.surface-pro-8 ];
 
   programs.wlogout = {
     enable = true;

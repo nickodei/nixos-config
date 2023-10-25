@@ -21,26 +21,28 @@
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    
-    hyprland.url = "github:hyprwm/Hyprland";   
+
+    hyprland.url = "github:hyprwm/Hyprland";
     nix-colors.url = "github:misterio77/nix-colors";
-  }; 
-
-  outputs = { home-manager, nixpkgs, ... }@inputs: let
-    mkSystem = import ./lib/mksystem.nix {
-      inherit nixpkgs inputs;
-    };
-  in {
-    nixosConfigurations.work = mkSystem {
-      host   = "dell-xps-17";
-      system = "x86_64-linux";
-      user   = "main";
-    };
-
-    nixosConfigurations.surface = mkSystem {
-      host   = "surface-pro";
-      system = "x86_64-linux";
-      user   = "main";
-    };             
   };
+
+  outputs = { home-manager, nixpkgs, ... }@inputs:
+    let
+      mkSystem = import ./lib/mksystem.nix {
+        inherit nixpkgs inputs;
+      };
+    in
+    {
+      nixosConfigurations.work = mkSystem {
+        host = "dell-xps-17";
+        system = "x86_64-linux";
+        user = "main";
+      };
+
+      nixosConfigurations.surface = mkSystem {
+        host = "surface-pro";
+        system = "x86_64-linux";
+        user = "main";
+      };
+    };
 }

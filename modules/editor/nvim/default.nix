@@ -87,26 +87,13 @@ in {
                 };
                 servers = {
                   cmake.enable = true;
-                  nixd.enable = true;
+                  #nixd.enable = true;
+		  rnix-lsp.enable = true;
                   clangd.enable = true;
                 };
               };
 	      lsp-format = {
 		enable = true;
-		setup = {
-  gopls = {
-    exclude = [
-      "gopls"
-    ];
-    force = true;
-    order = [
-      "gopls"
-      "efm"
-    ];
-    sync = true;
-  };
-};
-
 	      };
             };
             globals.mapleader = " ";
