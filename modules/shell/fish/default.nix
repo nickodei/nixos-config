@@ -1,10 +1,11 @@
-{ inputs, pkgs, lib, config, ... }:
+{ inputs, pkgs, lib, config, nixConfig, ... }:
 
 let
   cfg = config.modules.fish;
-in {
-  options.modules.fish = { 
-    enable = lib.mkEnableOption "fish"; 
+in
+{
+  options.modules.fish = {
+    enable = lib.mkEnableOption "fish";
   };
 
   config = lib.mkIf cfg.enable {
@@ -15,10 +16,11 @@ in {
         eval "$(direnv hook fish)"
       '';
       shellAbbrs = {
+        nix-test = "sudo nixos-rebuild test --flake ~/nixos-config#${nixConfig}";
+        nix-switch = "sudo nixos-rebuild switch --flake ~/nixos-config#${nixConfig}";
         ll = "ls -l";
-        test = "sudo nixos-rebuild test --flake /home/niek/nixos-config#work";
-        update = "sudo nixos-rebuild switch --flake /home/niek/nixos-config#work";
       };
     };
   };
 }
+

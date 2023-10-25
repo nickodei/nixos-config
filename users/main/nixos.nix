@@ -36,14 +36,18 @@
     LIBSEAT_BACKEND = "logind";
 
     # Mozilla
-    NVD_BACKEND="direct"; 
+    NVD_BACKEND = "direct";
     MOZ_ENABLE_WAYLAND = "1";
-    MOZ_DISABLE_RDD_SANDBOX="1";
-    MOZ_LOG="PlatformDecoderModule:5";
+    MOZ_DISABLE_RDD_SANDBOX = "1";
+    MOZ_LOG = "PlatformDecoderModule:5";
 
     # LIBVA_DRIVER_NAME = "nvidia";
   };
 
+  programs.nm-applet = {
+    enable = true;
+    indicator = true;
+  };
   environment.shells = with pkgs; [ fish ];
 
   fonts.packages = with pkgs; [
@@ -68,7 +72,7 @@
 
   programs.thunar.enable = true;
 
-security.pam.services.swaylock = {
+  security.pam.services.swaylock = {
     text = ''
       auth include login
     '';
