@@ -91,6 +91,23 @@ in {
                   clangd.enable = true;
                 };
               };
+	      lsp-format = {
+		enable = true;
+		setup = {
+  gopls = {
+    exclude = [
+      "gopls"
+    ];
+    force = true;
+    order = [
+      "gopls"
+      "efm"
+    ];
+    sync = true;
+  };
+};
+
+	      };
             };
             globals.mapleader = " ";
             keymaps = [

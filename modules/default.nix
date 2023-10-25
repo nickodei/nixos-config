@@ -9,5 +9,6 @@
       ./util
       ./desktop
       ./development
+      ./launcher
   ];
 }

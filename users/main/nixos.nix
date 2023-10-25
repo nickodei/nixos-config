@@ -6,7 +6,6 @@
     gnumake
     swaylock-effects
     rnote
-    rofi-wayland
     pamixer
     brightnessctl
     neofetch

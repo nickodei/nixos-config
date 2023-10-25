@@ -56,6 +56,14 @@ in {
     then [available-monitors.dell-xps-17] 
     else [available-monitors.surface-pro-8];
 
+    programs.rofi = {
+	enable = true;
+	package = pkgs.rofi-wayland;
+	extraConfig = {
+	    show-icons = true;
+	};
+    };
+
   programs.wlogout = {
     enable = true;
   };
