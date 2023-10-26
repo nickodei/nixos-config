@@ -33,11 +33,7 @@ in
             };
           };
         };
-        #coq-nvim = {
-        #  enable = true;
-        #  autoStart = true;
-        #};
-        #cmp-nvim-lsp.enable = true;
+        nvim-autopairs.enable = true;
         nvim-cmp = {
           enable = true;
           sources = [

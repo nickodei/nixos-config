@@ -1,16 +1,18 @@
-{ inputs, pkgs, lib, config, ...}:
+{ inputs, pkgs, lib, config, ... }:
 
-let 
-    cfg = config.modules.mako;
-in {
-    options.modules.mako = {
-	enable = lib.mkEnableOption "Mako";
-    };
+let
+  cfg = config.modules.mako;
+in
+{
+  options.modules.mako = {
+    enable = lib.mkEnableOption "Mako";
+  };
 
-    config = lib.mkIf cfg.enable {
-	programs.mako = {
-	    enable = true;
-	};
+  config = lib.mkIf cfg.enable {
+    programs.mako = {
+      enable = true;
+      defaultTimeout = 4000;
     };
+  };
 }
 

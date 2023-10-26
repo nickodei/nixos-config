@@ -1,6 +1,15 @@
 { lib, pkgs, config, ... }:
 
 {
+    imports = [
+	../../modules/hardware/imports.nix
+    ];
+
+    modules = {
+	hardware.audio.enable = true;
+	hardware.bluetooth.enable = true;
+    };
+
   environment.systemPackages = with pkgs; [
     hyprland
     gnumake
@@ -45,7 +54,6 @@
     # LIBVA_DRIVER_NAME = "nvidia";
   };
 
-  services.blueman.enable = true;
 
   environment.shells = with pkgs; [ fish ];
 
@@ -88,7 +96,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     home = "/home/main";
-    extraGroups = [ "docker" "wheel" "audio" "sound" "video" "networkmanager" "input" "tty" ];
+    extraGroups = [ "docker" "wheel" "video" "networkmanager" "input" "tty" ];
     hashedPassword = "$6$O.0kGRxN0suxw3GV$69okbAGk4peoBUWI42kxEbEYVgom/324.xIOpVPFtFJzS/fiolGqt3ek4gxCRhDYJXSxq/q97ws6JRpDG7MAy0";
   };
 }

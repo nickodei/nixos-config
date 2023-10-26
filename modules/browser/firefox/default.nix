@@ -15,6 +15,7 @@ in
         niek = {
           settings = {
             "browser.display.background_color" = "#${config.colorScheme.colors.base00}";
+            "browser.toolbars.bookmarks.visibility" = "never";
           };
           bookmarks = [
             {
