@@ -28,10 +28,7 @@ in
   imports = [
     ../../modules
     ../../modules/programs/imports.nix
-    inputs.nix-colors.homeManagerModules.default
   ];
-
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   modules = {
     firefox.enable = true;
@@ -42,6 +39,7 @@ in
     vscodium.enable = true;
     spotify.enable = true;
     obsidian.enable = true;
+    blueman-applet.enable = true;
 
     wayland = {
       hyprland = {
@@ -65,7 +63,6 @@ in
     then [ available-monitors.dell-xps-17 ]
     else [ available-monitors.surface-pro-8 ];
 
-  services.blueman-applet.enable = true;
 
   # Home - Default Settings
   home.username = "${user}";
