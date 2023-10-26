@@ -1,17 +1,17 @@
-{ lib, pkgs, config, ... }:
+{ lib, pkgs, config, user, ... }:
 
 {
-    imports = [
-	../../modules/hardware/imports.nix
-    ];
+  imports = [
+    ../../modules/hardware/imports.nix
+  ];
 
-    modules = {
-	hardware.audio.enable = true;
-	hardware.bluetooth.enable = true;
-    };
+  modules = {
+    hardware.audio.enable = true;
+    hardware.bluetooth.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
-    hyprland
+    #hyprland
     gnumake
     swaylock-effects
     rnote
@@ -23,8 +23,6 @@
     spotify
     libva
     jetbrains.rider
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
     xwayland
   ];
 
@@ -92,10 +90,10 @@
     hashedPassword = "$6$O.0kGRxN0suxw3GV$69okbAGk4peoBUWI42kxEbEYVgom/324.xIOpVPFtFJzS/fiolGqt3ek4gxCRhDYJXSxq/q97ws6JRpDG7MAy0";
   };
 
-  users.users.main = {
+  users.users.${user} = {
     isNormalUser = true;
     shell = pkgs.fish;
-    home = "/home/main";
+    home = "/home/${user}";
     extraGroups = [ "docker" "wheel" "video" "networkmanager" "input" "tty" ];
     hashedPassword = "$6$O.0kGRxN0suxw3GV$69okbAGk4peoBUWI42kxEbEYVgom/324.xIOpVPFtFJzS/fiolGqt3ek4gxCRhDYJXSxq/q97ws6JRpDG7MAy0";
   };

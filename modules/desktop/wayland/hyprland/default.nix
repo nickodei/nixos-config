@@ -1,7 +1,7 @@
 { inputs, pkgs, lib, config, host, ... }:
 
-let
-  cfg = config.modules.hyprland;
+with lib;
+let cfg = config.modules.hyprland;
 in
 {
   imports = [
@@ -9,19 +9,20 @@ in
   ];
 
   options.modules.hyprland = {
-    enable = lib.mkEnableOption "hyprland";
-    hidpi = lib.mkEnableOption "Hdpi Display";
+    enable = mkEnableOption "hyprland";
+    hidpi = mkEnableOption "Hdpi Display";
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.dconf
-      pkgs.qt6.qtwayland
-      pkgs.libsForQt5.qt5.qtwayland
+  config = mkIf cfg.enable {
+    home.packages = with pkgs; [
+      xdg-desktop-portal-gtk
+      xdg-desktop-portal-hyprland
+      dconf
+      qt6.qtwayland
+      libsForQt5.qt5.qtwayland
     ];
 
     home.sessionVariables = {
-      #GTK_THEME = "Catppuccin-Mocha-Standard-Lavender-dark:dark";
       GDK_SCALE = lib.mkIf (cfg.hidpi) 2;
       XCURSOR_SIZE = lib.mkIf (cfg.hidpi) 32;
     };

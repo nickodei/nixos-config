@@ -5,7 +5,7 @@ let cfg = config.modules.hardware.bluetooth;
 in
 {
   options.modules.hardware.bluetooth = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Bluetooth";
   };
 
   config = mkIf cfg.enable

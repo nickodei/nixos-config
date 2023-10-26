@@ -1,11 +1,11 @@
-{ options, config, lib, pkgs, ... }:
+{ options, config, lib, pkgs, user, ... }:
 
 with lib;
 let cfg = config.modules.hardware.audio;
 in
 {
   options.modules.hardware.audio = {
-    enable = mkBoolOpt false;
+    enable = mkEnableOption "Audio";
   };
 
   config = mkIf cfg.enable {
@@ -31,6 +31,6 @@ in
       '';
     };
 
-    user.extraGroups = [ "audio" ];
+    users.users.${user}.extraGroups = [ "audio" ];
   };
 }
