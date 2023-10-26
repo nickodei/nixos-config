@@ -7,6 +7,7 @@
     swaylock-effects
     rnote
     pamixer
+    networkmanagerapplet
     brightnessctl
     neofetch
     obsidian
@@ -44,10 +45,8 @@
     # LIBVA_DRIVER_NAME = "nvidia";
   };
 
-  programs.nm-applet = {
-    enable = true;
-    indicator = true;
-  };
+  services.blueman.enable = true;
+
   environment.shells = with pkgs; [ fish ];
 
   fonts.packages = with pkgs; [

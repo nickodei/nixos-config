@@ -62,6 +62,8 @@ in
     enable = true;
   };
 
+  services.blueman-applet.enable = true;
+
   # Home - Default Settings
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
