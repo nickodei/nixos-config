@@ -2,10 +2,11 @@
 
 let
   available-monitors = import ./../../modules/desktop/wayland/monitors.nix;
-  monitors =
+  monitors = (
     if (host == "dell-xps-17") then [ available-monitors.dell-xps-17 ]
     else if (host == "surface-pro") then [ available-monitors.surface-pro-8 ]
-    else [ ];
+    else [ ]
+  ) ++ [ available-monitors.view-sonic-32 ];
 in
 {
   imports = [
