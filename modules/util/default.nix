@@ -2,7 +2,7 @@
 
 {
   imports = [
-      ./git
-      ./monitors.nix
+    ./git
   ];
 }
+

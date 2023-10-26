@@ -4,6 +4,7 @@
   imports = [
     ./spotify.nix
     ./obsidian.nix
+    ./blueman-applet.nix
   ];
 }
 
