@@ -1,14 +1,14 @@
 { inputs, pkgs, lib, config, host, ... }:
 
 with lib;
-let cfg = config.modules.hyprland;
+let cfg = config.modules.wayland.hyprland;
 in
 {
   imports = [
     inputs.hyprland.homeManagerModules.default
   ];
 
-  options.modules.hyprland = {
+  options.modules.wayland.hyprland = {
     enable = mkEnableOption "hyprland";
     hidpi = mkEnableOption "Hdpi Display";
   };

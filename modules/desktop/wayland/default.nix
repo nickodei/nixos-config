@@ -2,9 +2,10 @@
 
 {
   imports = [
-      ./hyprland
-      ./hyprpaper
-      ./waybar
-      ./mako
+    ./hyprland
+    ./hyprpaper
+    ./waybar
+    ./mako
+    ./wlogout.nix
   ];
 }

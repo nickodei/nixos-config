@@ -17,7 +17,6 @@
     networkmanagerapplet
     brightnessctl
     neofetch
-    obsidian
     libva
     xwayland
   ];

@@ -3,6 +3,7 @@
 {
   imports = [
     ./spotify.nix
+    ./obsidian.nix
   ];
 }
 

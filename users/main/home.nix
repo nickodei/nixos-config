@@ -41,11 +41,16 @@ in
     git.enable = true;
     vscodium.enable = true;
     spotify.enable = true;
+    obsidian.enable = true;
 
-    hyprland = {
-      enable = true;
-      hidpi = true;
+    wayland = {
+      hyprland = {
+        enable = true;
+        hidpi = true;
+      };
+      wlogout.enable = true;
     };
+
 
     hyprpaper.enable = true;
     waybar.enable = true;
@@ -59,10 +64,6 @@ in
     if (host == "dell-xps-17")
     then [ available-monitors.dell-xps-17 ]
     else [ available-monitors.surface-pro-8 ];
-
-  programs.wlogout = {
-    enable = true;
-  };
 
   services.blueman-applet.enable = true;
 
