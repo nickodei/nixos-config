@@ -27,6 +27,7 @@ in
 {
   imports = [
     ../../modules
+    ../../modules/programs/imports.nix
     inputs.nix-colors.homeManagerModules.default
   ];
 
@@ -39,6 +40,7 @@ in
     nvim.enable = true;
     git.enable = true;
     vscodium.enable = true;
+    spotify.enable = true;
 
     hyprland = {
       enable = true;

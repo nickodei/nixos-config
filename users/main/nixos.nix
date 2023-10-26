@@ -11,18 +11,14 @@
   };
 
   environment.systemPackages = with pkgs; [
-    #hyprland
     gnumake
     swaylock-effects
-    rnote
     pamixer
     networkmanagerapplet
     brightnessctl
     neofetch
     obsidian
-    spotify
     libva
-    jetbrains.rider
     xwayland
   ];
 
