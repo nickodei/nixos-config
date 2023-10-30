@@ -2,6 +2,11 @@
 
 let
   cfg = config.modules.nvim;
+
+  # plugins
+  treesitter-plugin = import ./treesitter.nix;
+
+  transformedColors = lib.mapAttrs (name: value: "#" + value) config.colorScheme.colors;
 in
 {
   imports = [
@@ -19,12 +24,12 @@ in
         shiftwidth = 4; # Tab width should be 2
       };
       colorschemes = {
-        catppuccin = {
+        base16 = {
           enable = true;
-          flavour = "mocha";
+          customColorScheme = transformedColors;
         };
       };
-      plugins = {
+      plugins = lib.mkMerge [{
         telescope = {
           enable = true;
           keymaps = {
@@ -35,6 +40,10 @@ in
         };
         lualine.enable = true;
         nvim-autopairs.enable = true;
+        cmp-nvim-lsp.enable = true;
+        cmp-buffer.enable = true;
+        cmp_luasnip.enable = true;
+        cmp-path.enable = true;
         nvim-cmp = {
           enable = true;
           sources = [
@@ -68,9 +77,6 @@ in
           enable = true;
           #  keymaps.addFile = "<leader>a";
         };
-        treesitter = {
-          enable = true;
-        };
         lsp = {
           enable = true;
           keymaps = {
@@ -79,7 +85,6 @@ in
               "<leader>k" = "goto_prev";
               "<leader>j" = "goto_next";
             };
-
             lspBuf = {
               gd = "definition";
               K = "hover";
@@ -88,18 +93,16 @@ in
           };
           servers = {
             cmake.enable = true;
-            #nixd.enable = true;
-            rnix-lsp.enable = true;
+            nixd.enable = true;
             clangd.enable = true;
           };
         };
         lsp-format = {
           enable = true;
         };
-        luasnip = {
-          enable = true;
-        };
-      };
+        luasnip.enable = true;
+      }
+      (treesitter-plugin.plugin)];
       globals.mapleader = " ";
       keymaps = [
         {

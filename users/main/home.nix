@@ -10,9 +10,12 @@ let
 in
 {
   imports = [
+    inputs.nix-colors.homeManagerModules.default
     ../../modules
     ../../modules/programs/imports.nix
   ];
+
+  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
 
   modules = {
     firefox.enable = true;
