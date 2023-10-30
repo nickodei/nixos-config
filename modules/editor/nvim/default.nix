@@ -4,6 +4,7 @@ let
   cfg = config.modules.nvim;
 
   # plugins
+  cmp-plugin = import ./cmp.nix;
   treesitter-plugin = import ./treesitter.nix;
 
   transformedColors = lib.mapAttrs (name: value: "#" + value) config.colorScheme.colors;
@@ -102,7 +103,8 @@ in
         };
         luasnip.enable = true;
       }
-      (treesitter-plugin.plugin)];
+      (treesitter-plugin.plugins)
+      (cmp-plugin.plugins)];
       globals.mapleader = " ";
       keymaps = [
         {
