@@ -5,12 +5,12 @@
   hardware.opengl.enable = true;
   boot.loader = {
     efi.canTouchEfiVariables = true;
-    grub = {
-      devices = [ "nodev" ];
-      efiSupport = true;
-      enable = true;
-      useOSProber = true;
-    };
+    #grub = {
+    #  devices = [ "nodev" ];
+    #  efiSupport = true;
+    #  enable = true;
+    #  useOSProber = true;
+    #};
   };
 
   # Network-manager
@@ -34,4 +34,4 @@
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
   programs.ssh.startAgent = true;
- }
+}

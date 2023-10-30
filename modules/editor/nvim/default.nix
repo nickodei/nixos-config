@@ -33,6 +33,7 @@ in
             };
           };
         };
+        lualine.enable = true;
         nvim-autopairs.enable = true;
         nvim-cmp = {
           enable = true;
@@ -60,10 +61,13 @@ in
           };
           snippet.expand = "luasnip";
         };
-        #harpoon = {
-        #  enable = true;
-        #  keymaps.addFile = "<leader>a";
-        #};
+        fugitive = {
+          enable = true;
+        };
+        harpoon = {
+          enable = true;
+          #  keymaps.addFile = "<leader>a";
+        };
         treesitter = {
           enable = true;
         };
