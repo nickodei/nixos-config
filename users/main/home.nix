@@ -15,7 +15,7 @@ in
     ../../modules/programs/imports.nix
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-macchiato;
+  colorScheme = inputs.nix-colors.colorSchemes.gruvbox-dark-hard; #catppuccin-macchiato;
 
   modules = {
     firefox.enable = true;

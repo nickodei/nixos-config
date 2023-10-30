@@ -41,13 +41,13 @@
       };
     in
     {
-      nixosConfigurations.work = mkSystem {
+    nixosConfigurations.work = mkSystem {
         nixConfig = "work";
         host = "dell-xps-17";
         system = "x86_64-linux";
         user = "main";
       };
-    nixpkgs.
+
       nixosConfigurations.surface = mkSystem {
         nixConfig = "surface";
         host = "surface-pro";
