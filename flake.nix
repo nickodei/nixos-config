@@ -47,6 +47,7 @@
         system = "x86_64-linux";
         user = "main";
       };
+
       nixosConfigurations.surface = mkSystem {
         nixConfig = "surface";
         host = "surface-pro";

@@ -5,6 +5,7 @@ let
 
   # plugins
   cmp-plugin = import ./cmp.nix;
+  none-ls-plugin = import ./none-ls.nix;
   treesitter-plugin = import ./treesitter.nix;
 
   transformedColors = lib.mapAttrs (name: value: "#" + value) config.colorScheme.colors;
@@ -41,36 +42,6 @@ in
         };
         lualine.enable = true;
         nvim-autopairs.enable = true;
-        cmp-nvim-lsp.enable = true;
-        cmp-buffer.enable = true;
-        cmp_luasnip.enable = true;
-        cmp-path.enable = true;
-        nvim-cmp = {
-          enable = true;
-          sources = [
-            { name = "path"; }
-            { name = "nvim_lsp"; }
-            { name = "luasnip"; }
-            { name = "crates"; }
-            { name = "buffer"; }
-          ];
-          mapping = {
-            "<C-d>" = "cmp.mapping.scroll_docs(-4)";
-            "<C-f>" = "cmp.mapping.scroll_docs(4)";
-            "<C-Space>" = "cmp.mapping.complete()";
-            "<C-e>" = "cmp.mapping.abort()";
-            "<CR>" = "cmp.mapping.confirm({ select = true })";
-            "<Tab>" = {
-              action = "cmp.mapping.select_next_item()";
-              modes = [ "i" "s" ];
-            };
-            "<S-Tab>" = {
-              action = "cmp.mapping.select_prev_item()";
-              modes = [ "i" "s" ];
-            };
-          };
-          snippet.expand = "luasnip";
-        };
         fugitive = {
           enable = true;
         };
@@ -101,10 +72,10 @@ in
         lsp-format = {
           enable = true;
         };
-        luasnip.enable = true;
       }
       (treesitter-plugin.plugins)
-      (cmp-plugin.plugins)];
+      (cmp-plugin.plugins)
+      (none-ls-plugin.plugins)];
       globals.mapleader = " ";
       keymaps = [
         {
