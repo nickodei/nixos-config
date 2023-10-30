@@ -21,9 +21,25 @@ in
     programs.nixvim = {
       enable = true;
       options = {
-        number = true; # Show line numbers
-        relativenumber = true; # Show relative line numbers
-        shiftwidth = 4; # Tab width should be 2
+        updatetime = 100; # Faster completion
+
+        number = true;
+        relativenumber = true;
+
+        autoindent = true;
+        clipboard = "unnamedplus";
+        expandtab = true;
+        shiftwidth = 4;
+        smartindent = true;
+        tabstop = 4;
+
+        ignorecase = true;
+        incsearch = true;
+        smartcase = true;
+        wildmode = "list:longest";
+
+        swapfile = false;
+        undofile = true; # Build-in persistent undo
       };
       colorschemes = {
         base16 = {

@@ -7,7 +7,7 @@
         statix.enable = true;
       };
       formatting = {
-        fantomas.enable = true;
+        #fantomas.enable = true;
         nixfmt.enable = true;
       };
     };
