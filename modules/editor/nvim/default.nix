@@ -32,18 +32,41 @@ in
   options.modules.nvim = { enable = lib.mkEnableOption "nvim"; };
 
   config = lib.mkIf cfg.enable {
+    programs.ripgrep.enable = true;
     programs.nixvim = {
       enable = true;
       colorschemes = nvimThemes.${config.colorScheme.slug}.colorScheme;
       plugins = lib.mkMerge [{
-        telescope = {
-          enable = true;
-          keymaps = {
-            "<leader>pf" = {
-              action = "find_files";
+        telescope =
+          {
+            enable = true;
+            extraOptions = {
+              defaults = {
+                sorting_strategy = "ascending";
+                layout_config.prompt_position = "top";
+                # Insert mode mappings (within the prompt)
+                mappings.i = {
+                  "<esc>" = "close";
+                  "<tab>" = "move_selection_next";
+                  "<s-tab>" = "move_selection_previous";
+                };
+              };
+            };
+            extensions = {
+              fzf-native.enable = true;
+            };
+            keymaps = {
+              "<leader>ff" = {
+                action = "find_files";
+              };
+              "<leader>fg" = {
+                action = "live_grep";
+              };
+              "<leader>fb" = {
+                action = "buffers";
+              };
             };
           };
-        };
         lualine.enable = true;
         auto-save.enable = true;
         fugitive = {
