@@ -26,6 +26,7 @@ in
 
     ./treesitter.nix
     ./settings.nix
+    ./completion.nix
   ];
 
   options.modules.nvim = { enable = lib.mkEnableOption "nvim"; };
@@ -44,6 +45,7 @@ in
           };
         };
         lualine.enable = true;
+        auto-save.enable = true;
         fugitive = {
           enable = true;
         };
@@ -75,7 +77,7 @@ in
           enable = true;
         };
       }
-        (cmp-plugin.plugins)
+        #     (cmp-plugin.plugins)
         (none-ls-plugin.plugins)];
       globals.mapleader = " ";
       keymaps = [

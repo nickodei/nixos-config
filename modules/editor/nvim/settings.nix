@@ -26,10 +26,10 @@
       swapfile = true; # Enable swap files
 
       # Other
-      textwidth = 80; # Set chars-per-line-limit
-      colorcolumn = "81"; # Show column indicating the chars-per-line limit
-      cursorline = true;
-      cursorcolumn = true;
+      #textwidth = 80; # Set chars-per-line-limit
+      #colorcolumn = "81"; # Show column indicating the chars-per-line limit
+      #cursorline = true;
+      #cursorcolumn = true;
       termguicolors = true; # Enable true color
       wrap = false; # Do not wrap lines
       laststatus = 2; # Always show status line for all windows
@@ -46,7 +46,7 @@
       showcmd = true; # Show incomplete commands at the bottom
       modeline = false; # Ignore file’s mode lines
       signcolumn = "yes"; # Always show sign column
-      guicursor = "i:block"; # Use a block cursor in insert mode
+      #guicursor = "i:block"; # Use a block cursor in insert mode
       completeopt = "menuone,noinsert,noselect,preview"; # Auto-completion options
       cmdheight = 1; # Give more space for displaying messages.
       updatetime = 100; # Long updatetime leads to noticeable delays
@@ -54,12 +54,12 @@
       scrolloff = 10; # Number of vertical context lines
       sidescrolloff = 5; # Number of horizontal context lines
       list = true;
-      listchars = {
-        eol = "↲";
-        trail = "·";
-        space = ".";
-        tab = "-->";
-      };
+      #listchars = {
+      #  eol = "↲";
+      #  trail = "·";
+      #  space = ".";
+      #  tab = "-->";
+      #};
       viewoptions = [ "folds" "cursor" ];
     };
     extraConfigLua = ''

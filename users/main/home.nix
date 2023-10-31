@@ -16,7 +16,6 @@ in
   ];
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha; #edge-dark; #catppuccin-macchiato;
-
   modules = {
     firefox.enable = true;
     kitty.enable = true;
