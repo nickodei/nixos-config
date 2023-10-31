@@ -16,7 +16,6 @@
         { name = "nvim_lua"; }
         { name = "path"; }
       ];
-
       formatting = {
         fields = [ "abbr" "kind" "menu" ];
         format =

@@ -19,7 +19,7 @@
       #installable = "/flakeref#debug.options";
 
       # nixOS configuration
-      installable = "/flakeref#nixosConfigurations.surface.options";
+      installable = ".#nixosConfigurations.surface.options";
 
       # home-manager configuration
       #installable = "/flakeref#homeConfigurations.surface.options";
