@@ -16,7 +16,7 @@
       # Example installable for flake-parts, nixos, and home-manager
 
       # flake-parts
-      #installable = "/flakeref#debug.options";
+      #installable = ".#debug.options";
 
       # nixOS configuration
       installable = ".#nixosConfigurations.surface.options";

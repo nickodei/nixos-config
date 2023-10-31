@@ -1,10 +1,17 @@
-{
-  plugins = {
+{ _, ... }: {
+  programs.nixvim.plugins = {
     treesitter = {
       enable = true;
-      nixGrammars = true;
+      #folding = true;
       indent = true;
     };
-    treesitter-context.enable = true;
+    ts-context-commentstring.enable = true;
+    nvim-autopairs = {
+      enable = true;
+      checkTs = true;
+      disableInMacro = true;
+      disableInVisualblock = true;
+    };
+    ts-autotag.enable = true;
   };
 }
