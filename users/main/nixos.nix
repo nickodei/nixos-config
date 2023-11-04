@@ -12,6 +12,7 @@
 
   environment.systemPackages = with pkgs; [
     gnumake
+    unzip
     swaylock-effects
     pamixer
     networkmanagerapplet

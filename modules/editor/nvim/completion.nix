@@ -1,4 +1,6 @@
 { _, ... }: {
+  #programs.nixvim.plugins.coq-nvim.enable = true;
+  #programs.nixvim.plugins.coq-nvim.installArtifacts = true;
   programs.nixvim.plugins.nvim-cmp = {
     enable = true;
     completion = {
@@ -67,10 +69,13 @@
         '';
     };
     mapping = {
-      "<tab>" = "cmp.mapping.select_next_item()";
-      "<s-tab>" = "cmp.mapping.select_prev_item()";
-      "<c-n>" = "cmp.mapping.select_next_item()";
-      "<c-p>" = "cmp.mapping.select_prev_item()";
+      "<C-k>" = "cmp.mapping.select_prev_item()"; # previous suggestion
+      "<C-j>" = "cmp.mapping.select_next_item()"; #next suggestion
+      "<C-b>" = "cmp.mapping.scroll_docs(-4)";
+      "<C-f>" = "cmp.mapping.scroll_docs(4)";
+      "<C-Space>" = "cmp.mapping.complete()"; # show completion suggestions
+      "<C-e>" = "cmp.mapping.abort()"; # close completion window
+      "<CR>" = "cmp.mapping.confirm({ select = false })";
     };
   };
 }

@@ -26,6 +26,8 @@ in
         };
         window.zoomLevel = 1;
         workbench.startupEditor = "none";
+        omnisharp.sdkPath = "/nix/store/79pw6an1hq5a2rcalg9gfkxqdwqmxh58-dotnet-sdk-7.0.401/sdk";
+        omnisharp.sdkVersion = "7.0.401";
       };
     };
   };

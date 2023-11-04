@@ -25,18 +25,18 @@ in
                   name = "TUM Online";
                   url = "https://campus.tum.de/tumonline/ee/ui/ca2/app/desktop/#/home?$ctx=design=ca;lang=de";
                   tags = [ "tum" ];
-                  keyword = "tum-online";
+                  keyword = "online";
                 }
                 {
                   name = "TUM Moodle";
                   tags = [ "tum" ];
-                  keyword = "tum-moodle";
+                  keyword = "moodle";
                   url = "https://www.moodle.tum.de/my/";
                 }
                 {
                   name = "TUM Live";
                   tags = [ "tum" ];
-                  keyword = "tum-live";
+                  keyword = "live";
                   url = "https://live.rbg.tum.de/";
                 }
                 {
