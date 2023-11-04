@@ -1,6 +1,7 @@
 -- Setup language servers.
 local lspconfig = require('lspconfig')
-lspconfig.nixd.setup {}
+lspconfig.rnix.setup {}
+lspconfig.clangd.setup {}
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

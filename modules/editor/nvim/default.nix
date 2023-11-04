@@ -15,8 +15,13 @@ in
       vimdiffAlias = true;
 
       extraPackages = with pkgs; [
+	    # telescope
         ripgrep
         fd
+
+		# lsp
+		rnix-lsp
+		clang-tools_16
       ];
 
       plugins = with pkgs.vimPlugins; [
@@ -31,11 +36,19 @@ in
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
           '';
         }
-		    {
+		{
         	plugin = nvim-lspconfig;
-          type = "lua";
+            type = "lua";
         	config = "${builtins.readFile ./plugins/lsp.lua}";
       	}
+		{
+        	plugin = nvim-cmp;
+			type = "lua";
+        	config = "${buildins.readFile ./plugins/cmp.lua}";
+      	}
+		cmp_luasnip
+      	cmp-nvim-lsp
+    	luasnip
         nvim-treesitter.withAllGrammars
 		{
 			plugin = sonokai;
