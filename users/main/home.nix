@@ -1,4 +1,3 @@
-
 { config, lib, pkgs, inputs, host, user, ... }:
 
 let
@@ -8,8 +7,9 @@ let
     else if (host == "surface-pro") then [ available-monitors.surface-pro-8 ]
     else [ ]
   ) ++ [ available-monitors.view-sonic-32 ];
-in { 
-  imports = [ 
+in
+{
+  imports = [
     ../../modules
     ../../modules/programs/imports.nix
     inputs.nix-colors.homeManagerModules.default
