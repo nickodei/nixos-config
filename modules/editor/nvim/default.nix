@@ -31,7 +31,16 @@ in
             vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
           '';
         }
+		    {
+        	plugin = nvim-lspconfig;
+          type = "lua";
+        	config = "${builtins.readFile ./plugins/lsp.lua}";
+      	}
         nvim-treesitter.withAllGrammars
+		{
+			plugin = sonokai;
+			config = "colorscheme sonokai";
+		}
       ];
 
       extraLuaConfig = ''
