@@ -63,7 +63,7 @@ in
             config = ''
               require("lualine").setup({
                 icons_enabled = true,
-                theme = 'onedark',
+                theme = 'sonokai',
               })
             '';
           }
@@ -142,7 +142,14 @@ in
           nvim-treesitter.withAllGrammars
           {
             plugin = sonokai;
-            config = "colorscheme sonokai";
+            config = ''
+              if has('termguicolors')
+                set termguicolors
+              endif
+              
+              let g:sonokai_style = 'andromeda'
+              colorscheme sonokai
+            '';
           }
         ];
 
