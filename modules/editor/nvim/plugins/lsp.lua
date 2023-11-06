@@ -23,6 +23,9 @@ lspconfig.lua_ls.setup {
 local pid = vim.fn.getpid()
 lspconfig.omnisharp.setup {
 	on_attach = on_attach,
+	handlers = {
+		["textDocument/definition"] = require('omnisharp_extended').handler,
+	},
 	cmd = { "OMNISHARP_PATH", "--languageserver", "--hostPID", tostring(pid) },
 }
 

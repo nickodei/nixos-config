@@ -48,6 +48,21 @@
     # LIBVA_DRIVER_NAME = "nvidia";
   };
 
+  # todo: fix!!!!
+  # systemd.mounts = [{
+  #   where = "/nix/store/rrsd7d6f15ffpyrsgnj7pqbs0yinxbaq-vimplugin-omnisharp-vim";
+  #   what = "/home/main/.config/omnisharp-vim";
+  #   description = "Mounting fix";
+  #   options = "bind,rw";
+  #   type = "ext4";
+  # }];
+  #
+  # systemd.automounts = [{
+  #   where = "/nix/store/rrsd7d6f15ffpyrsgnj7pqbs0yinxbaq-vimplugin-omnisharp-vim";
+  #   description = "Mounting fix automount";
+  #   wantedBy = [ "multi-user.target" ];
+  #}];
+
 
   environment.shells = with pkgs; [ fish ];
 
@@ -90,7 +105,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     home = "/home/${user}";
-    extraGroups = [ "docker" "wheel" "video" "networkmanager" "input" "tty" ];
+    extraGroups = [ "docker" "wheel" "video" "networkmanager" "input" "tty" "root" ];
     hashedPassword = "$6$O.0kGRxN0suxw3GV$69okbAGk4peoBUWI42kxEbEYVgom/324.xIOpVPFtFJzS/fiolGqt3ek4gxCRhDYJXSxq/q97ws6JRpDG7MAy0";
   };
 }
