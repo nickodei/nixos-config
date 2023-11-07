@@ -38,14 +38,7 @@ in
           {
             plugin = telescope-nvim;
             type = "lua";
-            config = ''
-              local
-              builtin = require('telescope.builtin')
-              vim.keymap.set('n', '<leader>ff', builtin.find_files, {})
-              vim.keymap.set('n', '<leader>fg', builtin.live_grep, {})
-              vim.keymap.set('n', '<leader>fb', builtin.buffers, {})
-              vim.keymap.set('n', '<leader>fh', builtin.help_tags, {})
-            '';
+            config = builtins.readFile ./plugins/telescope.lua;
           }
           {
             plugin = nvim-lspconfig;
@@ -60,12 +53,7 @@ in
           {
             plugin = lualine-nvim;
             type = "lua";
-            config = ''
-              require("lualine").setup({
-                icons_enabled = true,
-                theme = 'sonokai',
-              })
-            '';
+            config = builtins.readFile ./plugins/lualine.lua;
           }
           {
             plugin = nvim-dap;
@@ -159,13 +147,3 @@ in
       };
     };
 }
-
-
-
-
-
-
-
-
-
-
