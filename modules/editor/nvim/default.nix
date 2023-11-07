@@ -3,8 +3,7 @@
 let
   cfg = config.modules.nvim;
 
-  lsp_config =
-    let context = builtins.readFile ./plugins/lsp.lua;
+  lsp_config = let context = builtins.readFile ./plugins/lsp.lua;
     in builtins.replaceStrings [ "OMNISHARP_PATH" ] [ "${pkgs.omnisharp-roslyn}/bin/OmniSharp" ] context;
 in
 {
@@ -26,9 +25,9 @@ in
 
           # lsp
           lua-language-server
-          rnix-lsp
           omnisharp-roslyn
           clang-tools_16
+          nixd
 
           # debuggers
           netcoredbg
@@ -85,12 +84,16 @@ in
             type = "lua";
             config = ''require("lsp-format").setup {}'';
           }
+		  {
+		  	plugin = fidget-nvim;
+			type = "lua";
+			config = ''require("fidget").setup {}'';
+		  }
           cmp-path
           cmp-nvim-lsp-signature-help
           cmp_luasnip
           cmp-nvim-lsp
           luasnip
-          vim-nix
           omnisharp-extended-lsp-nvim
           nvim-treesitter.withAllGrammars
           {
@@ -102,7 +105,7 @@ in
           }
         ];
 
-        extraLuaConfig = builtins.readFile ./options.lua
+        extraLuaConfig = builtins.readFile ./options.lua;
       };
     };
 }

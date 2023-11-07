@@ -7,7 +7,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup language servers.
 local lspconfig = require('lspconfig')
-lspconfig.rnix.setup {
+lspconfig.nixd.setup {
 	on_attach = on_attach,
 	capabilities = capabilities
 }
