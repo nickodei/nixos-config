@@ -58,47 +58,12 @@ in
           {
             plugin = nvim-dap;
             type = "lua";
-            config = ''
-                local dap = require("dap")
-
-                dap.adapters.coreclr = {
-                  type = 'executable',
-                  command = '${pkgs.netcoredbg}/bin/netcoredbg',
-                  args = {'--interpreter=vscode'}
-                }
-
-                dap.configurations.cs = {
-                {
-                  type = "coreclr",
-                  name = "launch - netcoredbg",
-                  request = "launch",
-                  program = function()
-                      return vim.fn.input('Path to dll', vim.fn.getcwd() .. '/bin/Debug/', 'file')
-                  end,
-                },
-              }
-
-              vim.fn.sign_define('DapBreakpoint', { text = '', texthl = 'DiagnosticDefaultError' })
-              vim.fn.sign_define('DapBreakpointCondition', { text = '', texthl = 'DiagnosticDefaultError' })
-            '';
+            config = builtins.readFile ./plugins/dap.lua;
           }
           {
             plugin = nvim-dap-ui;
             type = "lua";
-            config = ''
-              require("dapui").setup()
-
-              local dap, dapui = require("dap"), require("dapui")
-              dap.listeners.after.event_initialized["dapui_config"] = function()
-                dapui.open()
-              end
-              dap.listeners.before.event_terminated["dapui_config"] = function()
-                dapui.close()
-              end
-              dap.listeners.before.event_exited["dapui_config"] = function()
-                dapui.close()
-              end
-            '';
+            config = builtins.readFile ./plugins/dap-ui.lua;
           }
           {
             plugin = comment-nvim;
@@ -131,19 +96,13 @@ in
           {
             plugin = sonokai;
             config = ''
-              if has('termguicolors')
-                set termguicolors
-              endif
-              
               let g:sonokai_style = 'andromeda'
               colorscheme sonokai
             '';
           }
         ];
 
-        extraLuaConfig = ''
-          ${builtins.readFile ./options.lua}
-        '';
+        extraLuaConfig = builtins.readFile ./options.lua
       };
     };
 }
