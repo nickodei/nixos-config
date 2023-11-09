@@ -1,6 +1,10 @@
-{ lib, pkgs, config, user, ... }:
-
 {
+  lib,
+  pkgs,
+  config,
+  user,
+  ...
+}: {
   imports = [
     ../../modules/hardware/imports.nix
   ];
@@ -23,20 +27,14 @@
   ];
 
   environment.sessionVariables = {
-    EDITOR = "code";
+    EDITOR = "nvim";
     BROWSER = "firfox";
     TERMINAL = "kitty";
 
     WLR_NO_HARDWARE_CURSORS = "1";
     WLR_RENDERER_ALLOW_SOFTWARE = "1";
-    CLUTTER_BACKEND = "wayland";
     WLR_RENDERER = "vulkan";
 
-    XDG_CURRENT_DESKTOP = "Hyprland";
-    XDG_SESSION_DESKTOP = "Hyprland";
-    XDG_SESSION_TYPE = "wayland";
-
-    NIXOS_OZONE_WL = "1";
     LIBSEAT_BACKEND = "logind";
 
     # Mozilla
@@ -44,38 +42,21 @@
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
     MOZ_LOG = "PlatformDecoderModule:5";
-
-    # LIBVA_DRIVER_NAME = "nvidia";
   };
 
-  # todo: fix!!!!
-  # systemd.mounts = [{
-  #   where = "/nix/store/rrsd7d6f15ffpyrsgnj7pqbs0yinxbaq-vimplugin-omnisharp-vim";
-  #   what = "/home/main/.config/omnisharp-vim";
-  #   description = "Mounting fix";
-  #   options = "bind,rw";
-  #   type = "ext4";
-  # }];
-  #
-  # systemd.automounts = [{
-  #   where = "/nix/store/rrsd7d6f15ffpyrsgnj7pqbs0yinxbaq-vimplugin-omnisharp-vim";
-  #   description = "Mounting fix automount";
-  #   wantedBy = [ "multi-user.target" ];
-  #}];
+  environment.shells = with pkgs; [fish];
 
-
-  environment.shells = with pkgs; [ fish ];
-
-  fonts.packages = with pkgs; [
+  fonts.fonts = with pkgs; [
     inter
-    (nerdfonts.override { fonts = [ "SourceCodePro" ]; })
+    (nerdfonts.override {fonts = ["SourceCodePro"];})
+    fira-code
   ];
 
   security.polkit.enable = true;
 
   xdg.portal.enable = true;
   xdg.portal.wlr.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  xdg.portal.extraPortals = [pkgs.xdg-desktop-portal-gtk];
 
   nixpkgs.config.allowUnfree = true;
   programs.fish = {
@@ -105,7 +86,7 @@
     isNormalUser = true;
     shell = pkgs.fish;
     home = "/home/${user}";
-    extraGroups = [ "docker" "wheel" "video" "networkmanager" "input" "tty" "root" ];
+    extraGroups = ["docker" "wheel" "video" "networkmanager" "input" "tty" "root"];
     hashedPassword = "$6$O.0kGRxN0suxw3GV$69okbAGk4peoBUWI42kxEbEYVgom/324.xIOpVPFtFJzS/fiolGqt3ek4gxCRhDYJXSxq/q97ws6JRpDG7MAy0";
   };
 }

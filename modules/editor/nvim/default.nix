@@ -1,15 +1,16 @@
-{ inputs, pkgs, lib, config, ... }:
-
-let
-  cfg = config.modules.nvim;
-
-  lsp_config = let context = builtins.readFile ./plugins/lsp.lua;
-    in builtins.replaceStrings [ "OMNISHARP_PATH" ] [ "${pkgs.omnisharp-roslyn}/bin/OmniSharp" ] context;
-in
 {
-  options.modules.nvim = { enable = lib.mkEnableOption "nvim"; };
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.modules.nvim;
+in {
+  options.modules.nvim = {enable = lib.mkEnableOption "nvim";};
 
-  config = lib.mkIf cfg.enable
+  config =
+    lib.mkIf cfg.enable
     {
       programs.neovim = {
         enable = true;
@@ -25,12 +26,14 @@ in
 
           # lsp
           lua-language-server
-          omnisharp-roslyn
           clang-tools_16
           nixd
 
           # debuggers
           netcoredbg
+
+          # formaters
+          alejandra
         ];
 
         plugins = with pkgs.vimPlugins; [
@@ -42,7 +45,7 @@ in
           {
             plugin = nvim-lspconfig;
             type = "lua";
-            config = lsp_config;
+            config = builtins.readFile ./plugins/lsp.lua;
           }
           {
             plugin = nvim-cmp;
@@ -84,12 +87,14 @@ in
             type = "lua";
             config = ''require("lsp-format").setup {}'';
           }
-		  {
-		  	plugin = fidget-nvim;
-			type = "lua";
-			config = ''require("fidget").setup {}'';
-		  }
+          {
+            plugin = fidget-nvim;
+            type = "lua";
+            config = ''require("fidget").setup {}'';
+          }
+          lspkind-nvim
           cmp-path
+          cmp-buffer
           cmp-nvim-lsp-signature-help
           cmp_luasnip
           cmp-nvim-lsp
@@ -103,6 +108,14 @@ in
               colorscheme sonokai
             '';
           }
+          # {
+          #   plugin = melange-nvim;
+          #   type = "lua";
+          #   config = ''
+          #     vim.opt.termguicolors = true
+          #     vim.cmd.colorscheme 'melange'
+          #   '';
+          # }
         ];
 
         extraLuaConfig = builtins.readFile ./options.lua;

@@ -20,14 +20,26 @@ lspconfig.lua_ls.setup {
 	capabilities = capabilities
 }
 
+
+if os.getenv("JDTLS_PATH") ~= nil then
+	lspconfig.jdtls.setup {
+		on_attach = on_attach,
+		capabilities = capabilities,
+		cmd = { os.getenv("JDTLS_PATH"), "-configuration", "/home/main/.cache/jdtls/config", "-data",
+			"/home/main/.cache/jdtls/workspace" },
+	}
+end
+
 local pid = vim.fn.getpid()
-lspconfig.omnisharp.setup {
-	on_attach = on_attach,
-	handlers = {
-		["textDocument/definition"] = require('omnisharp_extended').handler,
-	},
-	cmd = { "OMNISHARP_PATH", "--languageserver", "--hostPID", tostring(pid) },
-}
+if os.getenv("OMNISHARP_PATH") ~= nil then
+	lspconfig.omnisharp.setup {
+		on_attach = on_attach,
+		handlers = {
+			["textDocument/definition"] = require('omnisharp_extended').handler,
+		},
+		cmd = { os.getenv("OMNISHARP_PATH"), "--languageserver", "--hostPID", tostring(pid) },
+	}
+end
 
 -- Global mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions

@@ -4,6 +4,7 @@ local luasnip = require('luasnip')
 require('luasnip.loaders.from_vscode').lazy_load()
 luasnip.config.setup {}
 
+local lspkind = require('lspkind')
 cmp.setup {
 	snippet = {
 		expand = function(args)
@@ -43,6 +44,21 @@ cmp.setup {
 		{ name = 'nvim_lsp' },
 		{ name = 'luasnip' },
 		{ name = 'path' },
+		{ name = 'buffer',                 keyword_length = 2 }, -- for buffer word completion
 		{ name = 'nvim_lsp_signature_help' }
+	},
+	formatting = {
+		format = lspkind.cmp_format {
+			mode = "symbol_text",
+			menu = {
+				nvim_lsp = "[LSP]",
+				ultisnips = "[US]",
+				nvim_lua = "[Lua]",
+				path = "[Path]",
+				buffer = "[Buffer]",
+				emoji = "[Emoji]",
+				omni = "[Omni]",
+			},
+		},
 	},
 }

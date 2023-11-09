@@ -1,9 +1,14 @@
-{ inputs, pkgs, lib, config, host, ... }:
-
-with lib;
-let cfg = config.modules.wayland.hyprland;
-in
 {
+  inputs,
+  pkgs,
+  lib,
+  config,
+  host,
+  ...
+}:
+with lib; let
+  cfg = config.modules.wayland.hyprland;
+in {
   imports = [
     inputs.hyprland.homeManagerModules.default
   ];
@@ -62,35 +67,59 @@ in
     home.sessionVariables = {
       GDK_SCALE = lib.mkIf (cfg.hidpi) 2;
       XCURSOR_SIZE = lib.mkIf (cfg.hidpi) 32;
+
+      # Toolkit variables
+      GDK_BACKEND = "wayland,x11";
+      QT_QPA_PLATFORM = "wayland;xcb";
+      SDL_VIDEODRIVER = "wayland";
+      CLUTTER_BACKEND = "wayland";
+
+      # XDG specific
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+
+      # Nixos specific
+      NIXOS_OZONE_WL = "1";
     };
 
     wayland.windowManager.hyprland = {
       enable = true;
       systemdIntegration = true;
-      enableNvidiaPatches = if host == "dell-xps-17" then true else false;
+      enableNvidiaPatches =
+        if host == "dell-xps-17"
+        then true
+        else false;
       xwayland.enable = true;
       plugins = [
         inputs.hyprgrass.packages.${pkgs.system}.default
       ];
       extraConfig = ''
           # Monitors
-          ${builtins.concatStringsSep "\n" (map(m:
-              let
-                  resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
-                  position = "${toString m.x}x${toString m.y}";
-              in
-                  "monitor=${m.name},${if m.enabled then "${resolution},${position},${toString m.scale}" else "disable"}"
-          )(cfg.monitors))}
+          ${builtins.concatStringsSep "\n" (map (
+          m: let
+            resolution = "${toString m.width}x${toString m.height}@${toString m.refreshRate}";
+            position = "${toString m.x}x${toString m.y}";
+          in "monitor=${m.name},${
+            if m.enabled
+            then "${resolution},${position},${toString m.scale}"
+            else "disable"
+          }"
+        ) (cfg.monitors))}
 
           # Startup Applications
           exec-once = waybar & hyprpaper & mako
           exec-once = nm-applet --indicator
           exec-once = blueman-applet
 
-          ${if cfg.hidpi then ''
-              # Fix HiDPI XWayland windows
-              exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
-          '' else ""}
+          ${
+          if cfg.hidpi
+          then ''
+            # Fix HiDPI XWayland windows
+            exec-once=xprop -root -f _XWAYLAND_GLOBAL_OUTPUT_SCALE 32c -set _XWAYLAND_GLOBAL_OUTPUT_SCALE 2
+          ''
+          else ""
+        }
 
           # For all categories, see https://wiki.hyprland.org/Configuring/Variables/
           input {
@@ -211,7 +240,7 @@ in
         binde  = , xf86MonBrightnessUp, exec, brightnessctl set +10%
         binde  = , xf86MonBrightnessDown, exec, brightnessctl set 10%-
 
-        
+
          exec, pamixer -d 5
 
         # Move focus with mainMod + arrow keys
@@ -267,8 +296,8 @@ in
       theme = {
         name = "Catppuccin-Mocha-Compact-Lavender-Dark";
         package = pkgs.catppuccin-gtk.override {
-          accents = [ "lavender" ];
-          tweaks = [ "rimless" "normal" ];
+          accents = ["lavender"];
+          tweaks = ["rimless" "normal"];
           variant = "mocha";
           size = "compact";
         };

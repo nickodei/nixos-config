@@ -16,6 +16,7 @@ in
         eval "$(direnv hook fish)"
       '';
       shellAbbrs = {
+        config = "nvim ~/nixos-config";
         nix-test = "sudo nixos-rebuild test --flake ~/nixos-config#${nixConfig}";
         nix-switch = "sudo nixos-rebuild switch --flake ~/nixos-config#${nixConfig}";
         ll = "ls -l";

@@ -34,25 +34,27 @@
     nix-colors.url = "github:misterio77/nix-colors";
   };
 
-  outputs = { home-manager, nixpkgs, ... }@inputs:
-    let
-      mkSystem = import ./lib/mksystem.nix {
-        inherit nixpkgs inputs;
-      };
-    in
-    {
-      nixosConfigurations.work = mkSystem {
-        nixConfig = "work";
-        host = "dell-xps-17";
-        system = "x86_64-linux";
-        user = "main";
-      };
-
-      nixosConfigurations.surface = mkSystem {
-        nixConfig = "surface";
-        host = "surface-pro";
-        system = "x86_64-linux";
-        user = "main";
-      };
+  outputs = {
+    home-manager,
+    nixpkgs,
+    ...
+  } @ inputs: let
+    mkSystem = import ./lib/mksystem.nix {
+      inherit nixpkgs inputs;
     };
+  in {
+    nixosConfigurations.work = mkSystem {
+      nixConfig = "work";
+      host = "dell-xps-17";
+      system = "x86_64-linux";
+      user = "main";
+    };
+
+    nixosConfigurations.surface = mkSystem {
+      nixConfig = "surface";
+      host = "surface-pro";
+      system = "x86_64-linux";
+      user = "main";
+    };
+  };
 }
