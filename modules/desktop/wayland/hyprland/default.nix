@@ -15,6 +15,7 @@ in {
 
   options.modules.wayland.hyprland = {
     enable = mkEnableOption "hyprland";
+    nvidia = mkEnableOption "Nvidia support";
     hidpi = mkEnableOption "Hdpi Display";
     monitors = mkOption {
       type = types.listOf (types.submodule {
@@ -55,6 +56,7 @@ in {
       });
     };
   };
+
   config = mkIf cfg.enable {
     home.packages = with pkgs; [
       xdg-desktop-portal-gtk
@@ -64,23 +66,32 @@ in {
       libsForQt5.qt5.qtwayland
     ];
 
-    home.sessionVariables = {
-      GDK_SCALE = lib.mkIf (cfg.hidpi) 2;
-      XCURSOR_SIZE = lib.mkIf (cfg.hidpi) 32;
+    home.sessionVariables =
+      {
+        GDK_SCALE = lib.mkIf (cfg.hidpi) 2;
+        XCURSOR_SIZE = lib.mkIf (cfg.hidpi) 32;
 
-      # Toolkit variables
-      GDK_BACKEND = "wayland,x11";
-      QT_QPA_PLATFORM = "wayland;xcb";
-      SDL_VIDEODRIVER = "wayland";
-      CLUTTER_BACKEND = "wayland";
+        # Toolkit variables
+        GDK_BACKEND = "wayland,x11";
+        QT_QPA_PLATFORM = "wayland;xcb";
+        SDL_VIDEODRIVER = "wayland";
+        CLUTTER_BACKEND = "wayland";
 
-      # XDG specific
-      XDG_CURRENT_DESKTOP = "Hyprland";
-      XDG_SESSION_TYPE = "wayland";
-      XDG_SESSION_DESKTOP = "Hyprland";
-
-      # Nixos specific
-    };
+        # XDG specific
+        XDG_CURRENT_DESKTOP = "Hyprland";
+        XDG_SESSION_TYPE = "wayland";
+        XDG_SESSION_DESKTOP = "Hyprland";
+      }
+      // mkIf (cfg.nvida)
+      {
+        # Nvidia specific
+        LIBVA_DRIVER_NAME = "nvidia";
+        XDG_SESSION_TYPE = "wayland";
+        GBM_BACKEND = "nvidia-drm";
+        __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+        WLR_NO_HARDWARE_CURSORS = "1";
+      }
+      or {};
 
     wayland.windowManager.hyprland = {
       enable = true;

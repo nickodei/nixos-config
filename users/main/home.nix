@@ -1,14 +1,24 @@
-{ config, lib, pkgs, inputs, host, user, ... }:
-
-let
-  available-monitors = import ./../../modules/desktop/wayland/monitors.nix;
-  monitors = (
-    if (host == "dell-xps-17") then [ available-monitors.dell-xps-17 ]
-    else if (host == "surface-pro") then [ available-monitors.surface-pro-8 ]
-    else [ ]
-  ) ++ [ available-monitors.view-sonic-32 ];
-in
 {
+  config,
+  lib,
+  pkgs,
+  inputs,
+  host,
+  user,
+  osConfig,
+  ...
+}: let
+  available-monitors = import ./../../modules/desktop/wayland/monitors.nix;
+  monitors =
+    (
+      if (host == "dell-xps-17")
+      then [available-monitors.dell-xps-17]
+      else if (host == "surface-pro")
+      then [available-monitors.surface-pro-8]
+      else []
+    )
+    ++ [available-monitors.view-sonic-32];
+in {
   imports = [
     ../../modules
     ../../modules/programs/imports.nix
@@ -33,6 +43,7 @@ in
       hyprland = {
         enable = true;
         hidpi = true;
+        nvidia = osConfig.modules.hardware.nvidia.enable;
         monitors = monitors;
       };
       wlogout.enable = true;
