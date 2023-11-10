@@ -7,27 +7,15 @@
   imports = [
     ../shared.nix
     ./hardware-configuration.nix
+    ../../modules/hardware/nvidia.nix
     inputs.nixos-hardware.nixosModules.dell-xps-17-9700-nvidia
   ];
 
+  modules = {
+    hardware.nvidia.enable = true;
+  };
+
   boot.loader.systemd-boot.enable = true;
-
-  # Enable OpenGL
-  hardware.opengl = {
-    enable = true;
-  };
-
-  # Nvidia
-  hardware.nvidia = {
-    open = true;
-    nvidiaSettings = true;
-    modesetting.enable = true;
-    powerManagement.enable = false;
-    powerManagement.finegrained = false;
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-  };
-
-  services.xserver.videoDrivers = ["nvidia"];
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

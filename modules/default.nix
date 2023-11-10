@@ -1,14 +1,17 @@
-{ inputs, pkgs, config, ... }:
-
 {
+  inputs,
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
-      ./browser
-      ./shell
-      ./terminal
-      ./editor
-      ./util
-      ./desktop
-      ./development
-      ./launcher
+    ./browser
+    ./shell
+    ./terminal
+    ./editor
+    ./util
+    ./desktop
+    ./development
+    ./launcher
   ];
 }
