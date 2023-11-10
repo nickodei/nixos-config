@@ -80,7 +80,6 @@ in {
       XDG_SESSION_DESKTOP = "Hyprland";
 
       # Nixos specific
-      NIXOS_OZONE_WL = "1";
     };
 
     wayland.windowManager.hyprland = {

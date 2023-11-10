@@ -42,11 +42,13 @@
     MOZ_ENABLE_WAYLAND = "1";
     MOZ_DISABLE_RDD_SANDBOX = "1";
     MOZ_LOG = "PlatformDecoderModule:5";
+
+    NIXOS_OZONE_WL = "1";
   };
 
   environment.shells = with pkgs; [fish];
 
-  fonts.fonts = with pkgs; [
+  fonts.packages = with pkgs; [
     inter
     (nerdfonts.override {fonts = ["SourceCodePro"];})
     fira-code

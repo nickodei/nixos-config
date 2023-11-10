@@ -1,11 +1,16 @@
-{ inputs, config, pkgs, ... }:
-
 {
-  imports = [ 
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
     ../shared.nix
     ./hardware-configuration.nix
     inputs.nixos-hardware.nixosModules.dell-xps-17-9700-nvidia
   ];
+
+  boot.loader.systemd-boot.enable = true;
 
   # Enable OpenGL
   hardware.opengl = {
@@ -32,4 +37,3 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "23.05"; # Did you read the comment?
 }
-
