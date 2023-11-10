@@ -15,6 +15,7 @@
     hardware.nvidia.enable = true;
   };
 
+  boot.kernelPackages = pkgs.linuxPackages_latest;
   boot.loader.systemd-boot.enable = true;
 
   # This value determines the NixOS release from which the default
