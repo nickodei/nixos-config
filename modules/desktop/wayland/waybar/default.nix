@@ -14,11 +14,11 @@ in {
   config = lib.mkIf cfg.enable {
     programs.waybar = {
       enable = true;
-      spacing = 6;
       settings = [
         {
           layer = "top";
           position = "top";
+          spacing = 12;
           modules-left = [
             "hyprland/workspaces"
           ];
@@ -26,12 +26,14 @@ in {
             "clock"
           ];
           modules-right = [
+            #"memory"
+            #"cpu"
+            "custom/seperator"
             "pulseaudio"
             "backlight"
             "battery"
             "network"
             "custom/seperator"
-            "custom/restart"
             "custom/shutdown"
           ];
           network = {
@@ -45,15 +47,14 @@ in {
           };
           battery = {
             states = {
-              good = 95;
-              warning = 30;
-              critical = 20;
+              good = 70;
+              warning = 20;
+              critical = 5;
             };
             format = "{icon}";
-            format-charging = "";
-            format-plugged = "";
+            format-charging = "{icon}";
             format-alt = "{time} {icon}";
-            format-icons = ["󰂎" "󰁺" "󰁻" "󰁼" "󰁽" "󰁾" "󰁿" "󰂀" "󰂁" "󰂂" "󰁹"];
+            format-icons = ["" "" "" "" ""];
           };
           backlight = {
             device = "intel_backlight";
@@ -65,12 +66,13 @@ in {
             scroll-step = 5;
             format = "{icon}";
             format-icons = ["󰕿" "󰖀" "󰕾"];
-            format-muted = "    󰝟";
+            format-muted = "󰝟";
             on-click = "wpctl set-mute @DEFAULT_SINK@ toggle";
             on-click-right = "pavucontrol";
           };
           clock = {
             interval = 60;
+            format = "{:%a %Od %b | %H:%M}";
             tooltip-format = "{calendar}";
             calendar = {
               format = {
@@ -81,12 +83,12 @@ in {
           };
           cpu = {
             interval = 10;
-            format = " {usage}%";
+            format = ''{usage}%,'';
             max-length = 10;
           };
           memory = {
             interval = 30;
-            format = " {used:0.1f}G";
+            format = "{used:0.1f}G,";
             max-length = 10;
           };
           disk = {
@@ -123,14 +125,45 @@ in {
         }
       ];
       style = ''
-         * {
-             font-family: "SauceCodePro NFM";
-             font-size: 16px;
-         	color: #b0b4bc;
-         }
+                       * {
+                        font-family: "SauceCodePro NFM";
+                        font-size: 16px;
+                       	color: #b0b4bc;
+                       }
 
-        window#waybar {
-            background: none;
+                       window#waybar {
+                       	background: none;
+                       }
+                       #workspaces {
+                       	margin-left: 8px;
+                       }
+                       #workspaces button {
+                       	padding: 0 2px;
+                       }
+
+                       .modules-left {
+                       	padding-top: 6px;
+                       	padding-left: 6px;
+                       }
+
+                       .modules-center {
+                       	padding-top: 6px;
+                       }
+
+                       .modules-right {
+                       	padding-top: 6px;
+                       	padding-right: 12px;
+                       }
+
+                 #network,
+           #battery,
+           #backlight,
+           #pulseaudio {
+                 	font-size: 20px;
+                 }
+
+        #cpu span {
+        	margin-left: -5px;
         }
       '';
     };

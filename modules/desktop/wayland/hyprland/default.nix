@@ -95,10 +95,7 @@ in {
     wayland.windowManager.hyprland = {
       enable = true;
       systemdIntegration = true;
-      enableNvidiaPatches =
-        if host == "dell-xps-17"
-        then true
-        else false;
+      enableNvidiaPatches = cfg.nvidia;
       xwayland.enable = true;
       plugins = [
         inputs.hyprgrass.packages.${pkgs.system}.default
@@ -164,7 +161,7 @@ in {
         decoration {
             # See https://wiki.hyprland.org/Configuring/Variables/ for more
 
-            rounding = 10
+            rounding =5
 
             blur {
                 enabled = true
