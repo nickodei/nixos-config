@@ -18,5 +18,10 @@ in {
     {
       virtualisation.docker.enable = true;
       virtualisation.docker.enableNvidia = cfg.nvidia;
+
+      virtualisation.podman.enable = true;
+      environment.systemPackages = with pkgs; [
+        docker-compose
+      ];
     };
 }

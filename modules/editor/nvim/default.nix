@@ -93,6 +93,7 @@ in {
             config = ''require("fidget").setup {}'';
           }
           lspkind-nvim
+          playground
           cmp-path
           cmp-buffer
           cmp-nvim-lsp-signature-help
@@ -100,7 +101,20 @@ in {
           cmp-nvim-lsp
           luasnip
           omnisharp-extended-lsp-nvim
-          nvim-treesitter.withAllGrammars
+          {
+            plugin = nvim-treesitter.withAllGrammars;
+            type = "lua";
+            config = ''
+                        require("nvim-treesitter.configs").setup {
+                        	highlight = {
+                        		enable = true
+                        	},
+              indent = {
+              	enable = true
+              }
+                        }
+            '';
+          }
           {
             plugin = sonokai;
             config = ''

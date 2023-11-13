@@ -51,6 +51,10 @@
     NIXOS_OZONE_WL = "1";
   };
 
+  networking.extraHosts = ''
+    127.0.0.1 re-invent.lc
+  '';
+
   environment.shells = with pkgs; [fish];
 
   fonts.packages = with pkgs; [
