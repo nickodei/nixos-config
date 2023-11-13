@@ -12,6 +12,10 @@
   modules = {
     hardware.audio.enable = true;
     hardware.bluetooth.enable = true;
+    hardware.docker = {
+      enable = true;
+      nvidia = true;
+    };
   };
 
   environment.systemPackages = with pkgs; [
@@ -22,6 +26,7 @@
     networkmanagerapplet
     brightnessctl
     neofetch
+    wl-clipboard
     libva
     xwayland
   ];

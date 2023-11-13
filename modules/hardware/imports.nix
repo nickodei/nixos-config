@@ -8,5 +8,6 @@
     ./sound.nix
     ./bluetooth.nix
     ./nvidia.nix
+    ./docker.nix
   ];
 }
