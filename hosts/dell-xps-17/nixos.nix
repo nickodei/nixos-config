@@ -7,7 +7,7 @@
   imports = [
     ../shared.nix
     ./hardware-configuration.nix
-    ../../modules/hardware/imports.nix.nix
+    ../../modules/hardware/imports.nix
     inputs.nixos-hardware.nixosModules.dell-xps-17-9700-nvidia
   ];
 
