@@ -47,7 +47,7 @@
       nixConfig = "work";
       host = "dell-xps-17";
       system = "x86_64-linux";
-      user = "main";
+      user = "work";
     };
 
     nixosConfigurations.surface = mkSystem {
