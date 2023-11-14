@@ -46,5 +46,9 @@ in {
     xdg.configFile."rofi-menues/rofi-network-manager.conf" = {
       source = ./rofi-network-manager.conf;
     };
+
+    xdg.configFile."rofi-menues/rofi-network-manager.rasi" = {
+      source = ./rofi-network-manager.rasi;
+    };
   };
 }
