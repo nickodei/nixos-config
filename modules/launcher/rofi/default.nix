@@ -1,9 +1,14 @@
-{ inputs, pkgs, lib, config, ... }:
-
-let
-  cfg = config.modules.rofi;
-in
 {
+  inputs,
+  pkgs,
+  lib,
+  config,
+  ...
+}: let
+  cfg = config.modules.rofi;
+
+  rofi-bluetooth = pkgs.writeShellScriptBin (builtins.readFile ./rofi-bluetooth.sh);
+in {
   options.modules.rofi = {
     enable = lib.mkEnableOption "Rofi";
   };
@@ -16,7 +21,7 @@ in
         modi = "run,drun,window";
         icon-theme = "Oranchelo";
         show-icons = true;
-        terminal = "alacritty";
+        terminal = "kitty";
         drun-display-format = "{icon} {name}";
         location = 0;
         disable-history = false;
@@ -29,5 +34,7 @@ in
       };
       theme = ./themes/catppuccin-macchiato.rasi;
     };
+
+    home.packages = [rofi-bluetooth];
   };
 }

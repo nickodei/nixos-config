@@ -16,13 +16,9 @@ in {
     mkIf cfg.enable
     {
       hardware.bluetooth.enable = true;
-      hardware.bluetooth.settings = {
-        General = {
-          AutoConnect = true;
-          Enable = "Source,Sink,Media,Socket";
-        };
-      };
+      hardware.bluetooth.package = pkgs.bluez;
+      hardware.bluetooth.settings.General.Experimental = true;
 
-      services.blueman.enable = true;
+      hardware.enableAllFirmware = true;
     };
 }

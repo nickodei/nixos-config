@@ -32,6 +32,7 @@ in {
             "pulseaudio"
             "backlight"
             "battery"
+            "bluetooth"
             "network"
             "custom/seperator"
             "custom/shutdown"
@@ -44,6 +45,12 @@ in {
             tooltip-format-wifi = "{essid} ({signalStrength}%) ";
             tooltip-format-ethernet = "{ifname} ";
             tooltip-format-disconnected = "Disconnected";
+          };
+          bluetooth = {
+            format-on = "";
+            format-off = "";
+            format-disabled = "󰂲";
+            format-connected = "󰂱";
           };
           battery = {
             states = {
@@ -125,46 +132,47 @@ in {
         }
       ];
       style = ''
-                       * {
-                        font-family: "SauceCodePro NFM";
-                        font-size: 16px;
-                       	color: #b0b4bc;
-                       }
+                          * {
+                           font-family: "SauceCodePro NFM";
+                           font-size: 16px;
+                          	color: #b0b4bc;
+                          }
 
-                       window#waybar {
-                       	background: none;
-                       }
-                       #workspaces {
-                       	margin-left: 8px;
-                       }
-                       #workspaces button {
-                       	padding: 0 2px;
-                       }
+                          window#waybar {
+                          	background: none;
+                          }
+                          #workspaces {
+                          	margin-left: 8px;
+                          }
+                          #workspaces button {
+                          	padding: 0 2px;
+                          }
 
-                       .modules-left {
-                       	padding-top: 6px;
-                       	padding-left: 6px;
-                       }
+                          .modules-left {
+                          	padding-top: 6px;
+                          	padding-left: 6px;
+                          }
 
-                       .modules-center {
-                       	padding-top: 6px;
-                       }
+                          .modules-center {
+                          	padding-top: 6px;
+                          }
 
-                       .modules-right {
-                       	padding-top: 6px;
-                       	padding-right: 12px;
-                       }
+                          .modules-right {
+                          	padding-top: 6px;
+                          	padding-right: 12px;
+                          }
 
-                 #network,
-           #battery,
-           #backlight,
-           #pulseaudio {
-                 	font-size: 20px;
-                 }
+                    #network,
+        #bluetooth,
+              #battery,
+              #backlight,
+              #pulseaudio {
+                    	font-size: 20px;
+                    }
 
-        #cpu span {
-        	margin-left: -5px;
-        }
+           #cpu span {
+           	margin-left: -5px;
+           }
       '';
     };
   };

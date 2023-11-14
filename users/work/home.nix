@@ -61,6 +61,6 @@ in {
   home.username = "${user}";
   home.homeDirectory = "/home/${user}";
 
-  home.stateVersion = "22.11";
+  home.stateVersion = "23.11";
   programs.home-manager.enable = true;
 }
