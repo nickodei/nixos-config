@@ -92,6 +92,7 @@ in {
             type = "lua";
             config = ''require("fidget").setup {}'';
           }
+          vim-fugitive
           lspkind-nvim
           playground
           cmp-path
