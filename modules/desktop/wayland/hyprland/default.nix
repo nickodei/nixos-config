@@ -139,9 +139,9 @@ in {
         ) (cfg.monitors))}
 
                 # Startup Applications
-                exec-once = waybar & hyprpaper & mako
-                exec-once = nm-applet --indicator
-                exec-once = blueman-applet
+                exec-once = waybar & hyprpaper & dunst
+                #exec-once = nm-applet --indicator
+                #exec-once = blueman-applet
 
                 ${
           if cfg.hidpi

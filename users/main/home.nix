@@ -34,7 +34,7 @@ in {
     nvim.enable = true;
     git.enable = true;
     vscodium.enable = true;
-    mako.enable = true;
+    dunst.enable = true;
 
     spotify.enable = true;
     obsidian.enable = true;
