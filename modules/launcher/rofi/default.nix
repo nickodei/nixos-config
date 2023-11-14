@@ -42,5 +42,9 @@ in {
       executable = true;
       source = ./rofi-network-manager.sh;
     };
+
+    xdg.configFile."rofi-menues/rofi-network-manager.conf" = {
+      source = ./rofi-network-manager.conf;
+    };
   };
 }
