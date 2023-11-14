@@ -6,8 +6,6 @@
   ...
 }: let
   cfg = config.modules.rofi;
-
-  rofi-bluetooth = pkgs.writeShellScriptBin (builtins.readFile ./rofi-bluetooth.sh);
 in {
   options.modules.rofi = {
     enable = lib.mkEnableOption "Rofi";
@@ -35,6 +33,14 @@ in {
       theme = ./themes/catppuccin-macchiato.rasi;
     };
 
-    home.packages = [rofi-bluetooth];
+    xdg.configFile."rofi-menues/rofi-bluetooth.sh" = {
+      executable = true;
+      source = ./rofi-bluetooth.sh;
+    };
+
+    xdg.configFile."rofi-menues/rofi-network-manager.sh" = {
+      executable = true;
+      source = ./rofi-network-manager.sh;
+    };
   };
 }
