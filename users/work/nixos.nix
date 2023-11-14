@@ -28,6 +28,7 @@
     neofetch
     wl-clipboard
     libva
+    libcamera
     xwayland
   ];
 

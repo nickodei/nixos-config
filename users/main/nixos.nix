@@ -23,6 +23,7 @@
     brightnessctl
     neofetch
     libva
+    libcamera
     xwayland
   ];
 
