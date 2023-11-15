@@ -25,6 +25,7 @@
     libva
     libcamera
     xwayland
+    wvkbd
   ];
 
   environment.sessionVariables = {

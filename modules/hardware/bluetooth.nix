@@ -16,6 +16,8 @@ in {
     mkIf cfg.enable
     {
       hardware.bluetooth.enable = true;
+      hardware.bluetooth.powerOnBoot = false;
+
       hardware.bluetooth.package = pkgs.bluez;
       hardware.bluetooth.settings.General.Experimental = true;
 

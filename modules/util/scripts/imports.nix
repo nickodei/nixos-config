@@ -5,7 +5,5 @@
   ...
 }: {
   imports = [
-    ./git
-    ./scripts/imports.nix
   ];
 }

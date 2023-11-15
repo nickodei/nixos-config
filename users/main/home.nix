@@ -27,6 +27,10 @@ in {
 
   colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
+  home.packages = [
+    (import ./../../modules/util/scripts/set-volume/set-volume.nix {inherit pkgs;})
+  ];
+
   modules = {
     firefox.enable = true;
     kitty.enable = true;
