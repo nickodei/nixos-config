@@ -392,9 +392,9 @@ in {
         bind = $mainMod SHIFT, B, exec, rofi-bluetooth
 
                   # Fn-Keys
-                  binde  = , XF86AudioRaiseVolume, exec, pamixer -i 5
-                  binde  = , XF86AudioLowerVolume, exec, pamixer -d 5
-                  bindle = , XF86AudioMute, exec, pamixer --toggle-mute
+                  binde  = , XF86AudioRaiseVolume, exec, set-volume volume_up
+                  binde  = , XF86AudioLowerVolume, exec, set-volume volume_down
+                  bindle = , XF86AudioMute, exec, set-volume volume_mute
                   binde  = , xf86MonBrightnessUp, exec, brightnessctl set +10%
                   binde  = , xf86MonBrightnessDown, exec, brightnessctl set 10%-
                    exec, pamixer -d 5

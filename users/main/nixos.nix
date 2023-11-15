@@ -26,6 +26,7 @@
     libcamera
     xwayland
     wvkbd
+    wl-clipboard
   ];
 
   environment.sessionVariables = {

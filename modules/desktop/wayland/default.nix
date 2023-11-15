@@ -1,6 +1,9 @@
-{ inputs, pkgs, config, ... }:
-
 {
+  inputs,
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
     ./hyprland
     ./hyprpaper
