@@ -1,7 +1,11 @@
-{ inputs, pkgs, config, ... }:
-
 {
+  inputs,
+  pkgs,
+  config,
+  ...
+}: {
   imports = [
-      ./firefox
+    ./firefox
+    ./chromium/chromium.nix
   ];
 }
