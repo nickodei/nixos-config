@@ -33,6 +33,8 @@ in {
 
   modules = {
     firefox.enable = true;
+    chromium.enable = true;
+
     kitty.enable = true;
     fish.enable = true;
     nvim.enable = true;
