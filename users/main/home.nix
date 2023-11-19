@@ -49,7 +49,7 @@ in {
         enable = true;
         hidpi = true;
         nvidia = false; #osConfig.modules.hardware.nvidia.enable;
-        #monitors = monitors;
+        monitors = [];
       };
       wlogout.enable = true;
     };

@@ -37,6 +37,12 @@
   } @ inputs: let
     inherit (self) outputs;
     lib = nixpkgs.lib // home-manager.lib;
+	systems = [ "x86_64-linux" ];
+	forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
+    pkgsFor = lib.genAttrs systems (system: import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+      });
   in {
     inherit lib;
 
@@ -61,11 +67,13 @@
     homeConfigurations = {
       "dell-xps@work" = lib.homeManagerConfiguration {
         modules = [./users/work/home.nix];
+		pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
       "surface@main" = lib.homeManagerConfiguration {
         modules = [./users/main/home.nix];
+		pkgs = pkgsFor.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
     };
