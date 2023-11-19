@@ -5,7 +5,6 @@
   inputs,
   host,
   user,
-  osConfig,
   ...
 }: let
   available-monitors = import ./../../modules/desktop/wayland/monitors.nix;
@@ -44,7 +43,7 @@ in {
       hyprland = {
         enable = true;
         hidpi = true;
-        nvidia = osConfig.modules.hardware.nvidia.enable;
+        nvidia = true; #osConfig.modules.hardware.nvidia.enable;
         monitors = monitors;
       };
       wlogout.enable = true;
