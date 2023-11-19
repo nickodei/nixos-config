@@ -15,11 +15,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     firefox-addons = {
       url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -35,26 +30,44 @@
   };
 
   outputs = {
+    self,
     home-manager,
     nixpkgs,
     ...
   } @ inputs: let
-    mkSystem = import ./lib/mksystem.nix {
-      inherit nixpkgs inputs;
-    };
+    inherit (self) outputs;
+    lib = nixpkgs.lib // home-manager.lib;
   in {
-    nixosConfigurations.work = mkSystem {
-      nixConfig = "work";
-      host = "dell-xps-17";
-      system = "x86_64-linux";
-      user = "work";
+    inherit lib;
+
+    nixosConfigurations = {
+      dell-xps = lib.nixosSystem {
+        modules = [
+          ./hosts/dell-xps-17/nixos.nix
+          ./users/work/home.nix
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
+
+      surface = lib.nixosSystem {
+        modules = [
+          ./hosts/surface-pro/nixos.nix
+          ./users/main/nixos.nix
+        ];
+        specialArgs = {inherit inputs outputs;};
+      };
     };
 
-    nixosConfigurations.surface = mkSystem {
-      nixConfig = "surface";
-      host = "surface-pro";
-      system = "x86_64-linux";
-      user = "main";
+    homeConfigurations = {
+      "dell-xps@work" = lib.homeManagerConfiguration {
+        modules = [./users/work/home.nix];
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
+
+      "surface@main" = lib.homeManagerConfiguration {
+        modules = [./users/main/home.nix];
+        extraSpecialArgs = {inherit inputs outputs;};
+      };
     };
   };
 }

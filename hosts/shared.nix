@@ -1,6 +1,9 @@
-{ inputs, config, pkgs, ... }:
-
 {
+  inputs,
+  config,
+  pkgs,
+  ...
+}: {
   # Use the grub EFI boot loader.
   hardware.opengl.enable = true;
   boot.loader = {
@@ -29,7 +32,7 @@
 
   # Nix settings
   nixpkgs.config.allowUnfree = true;
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
 
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;

@@ -3,29 +3,26 @@
   lib,
   pkgs,
   inputs,
-  host,
-  user,
-  osConfig,
   ...
 }: let
   available-monitors = import ./../../modules/desktop/wayland/monitors.nix;
-  monitors =
-    (
-      if (host == "dell-xps-17")
-      then [available-monitors.dell-xps-17]
-      else if (host == "surface-pro")
-      then [available-monitors.surface-pro-8]
-      else []
-    )
-    ++ [available-monitors.view-sonic-32];
+  # monitors =
+  #   (
+  #     if (host == "dell-xps-17")
+  #     then [available-monitors.dell-xps-17]
+  #     else if (host == "surface-pro")
+  #     then [available-monitors.surface-pro-8]
+  #     else []
+  #   )
+  #   ++ [available-monitors.view-sonic-32];
 in {
   imports = [
     ../../modules
     ../../modules/programs/imports.nix
-    inputs.nix-colors.homeManagerModules.default
+    #inputs.nix-colors.homeManagerModules.default
   ];
 
-  colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
+  #colorScheme = inputs.nix-colors.colorSchemes.catppuccin-mocha;
 
   home.packages = [
     (import ./../../modules/util/scripts/set-volume/set-volume.nix {inherit pkgs;})
@@ -51,8 +48,8 @@ in {
       hyprland = {
         enable = true;
         hidpi = true;
-        nvidia = osConfig.modules.hardware.nvidia.enable;
-        monitors = monitors;
+        nvidia = false; #osConfig.modules.hardware.nvidia.enable;
+        #monitors = monitors;
       };
       wlogout.enable = true;
     };
@@ -65,8 +62,8 @@ in {
   };
 
   # Home - Default Settings
-  home.username = "${user}";
-  home.homeDirectory = "/home/${user}";
+  home.username = "main";
+  home.homeDirectory = "/home/main";
 
   home.stateVersion = "23.11";
   programs.home-manager.enable = true;
