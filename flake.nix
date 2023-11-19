@@ -36,44 +36,38 @@
     ...
   } @ inputs: let
     inherit (self) outputs;
-    lib = nixpkgs.lib // home-manager.lib;
-	systems = [ "x86_64-linux" ];
-	forEachSystem = f: lib.genAttrs systems (system: f pkgsFor.${system});
-    pkgsFor = lib.genAttrs systems (system: import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-      });
-  in {
-    inherit lib;
 
+    systems = ["x86_64-linux"];
+    forAllSystems = nixpkgs.lib.genAttrs systems;
+  in {
     nixosConfigurations = {
-      dell-xps = lib.nixosSystem {
+      dell-xps = nixpkgs.lib.nixosSystem {
         modules = [
-          ./hosts/dell-xps-17/nixos.nix
-          ./users/work/home.nix
+          ./nixos/hosts/dell-xps/nixos.nix
         ];
+        system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
       };
 
-      surface = lib.nixosSystem {
+      surface = nixpkgs.lib.nixosSystem {
         modules = [
-          ./hosts/surface-pro/nixos.nix
-          ./users/main/nixos.nix
+          ./nixos/hosts/surface/nixos.nix
         ];
+        system = "x86_64-linux";
         specialArgs = {inherit inputs outputs;};
       };
     };
 
     homeConfigurations = {
-      "dell-xps@work" = lib.homeManagerConfiguration {
+      "dell-xps@work" = home-manager.lib.homeManagerConfiguration {
         modules = [./users/work/home.nix];
-		pkgs = pkgsFor.x86_64-linux;
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
 
-      "surface@main" = lib.homeManagerConfiguration {
+      "main@surface" = home-manager.lib.homeManagerConfiguration {
         modules = [./users/main/home.nix];
-		pkgs = pkgsFor.x86_64-linux;
+        pkgs = nixpkgs.legacyPackages.x86_64-linux;
         extraSpecialArgs = {inherit inputs outputs;};
       };
     };

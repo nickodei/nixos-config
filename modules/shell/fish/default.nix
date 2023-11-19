@@ -13,7 +13,7 @@ in
       enable = true;
       interactiveShellInit = ''
         set fish_greeting # Disable greeting
-        eval "$(direnv hook fish)"
+        eval "$(direnv hook fish) "
       '';
       shellAbbrs = {
         config = "nvim ~/nixos-config";

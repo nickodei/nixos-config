@@ -23,19 +23,19 @@ in {
   in {
     boot.initrd.kernelModules = [(mkIf amd "amdgpu")];
 
-    services.xserver = mkIf xorg {
+    services.xserver = {
       videoDrivers = [
         (mkIf amd "amdgpu")
         (mkIf intel "intel")
         (mkIf nvidia "nvidia")
       ];
 
-      deviceSection = mkIf (intel || amd) ''
-        Option "TearFree" "true"
-      '';
+      #deviceSection = mkIf (intel || amd) ''
+      #  Option "TearFree" "true"
+      #'';
 
-      enable = true;
-      libinput.enable = true;
+      #enable = true;
+      #libinput.enable = true;
     };
 
     hardware.opengl = {

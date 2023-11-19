@@ -9,7 +9,7 @@
 with lib; let
   cfg = config.modules.hardware.secureboot;
 in {
-  import = [
+  imports = [
     inputs.lanzaboote.nixosModules.lanzaboote
   ];
 
